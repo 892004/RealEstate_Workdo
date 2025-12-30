@@ -1,0 +1,90 @@
+.drop{
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 150ms ease, transform 150ms ease;
+  pointer-events: none; /* prevent clicks when hidden */
+}
+.Navbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999; /* 🔥 must be very high */
+}
+
+.user:hover .drop{
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* ---------- MENU ---------- */
+.menu-item {
+  position: relative;
+}
+
+.menu-item::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 35px;       /* 👈 gap se thoda zyada */
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: #FFE7D9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+}
+
+/* ---------- MEGA MENU ---------- */
+.mega-menu {
+  position: fixed;      /* 🔥 KEY FIX */
+  top:100px;            /* height of navbar */
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 30px 60px;
+  display: none;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+
+/* SHOW ON HOVER */
+.menu-item:hover .mega-menu {
+  display: block;
+}
+
+/* CONTENT */
+.mega-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: auto;
+}
+
+
+.mega-content h4 {
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.menu-link {
+  display: block;
+  color: #000;
+  margin-bottom: 8px;
+  text-decoration: none;
+  font-size: 16px;
+} 
+
+
+.loading {
+  font-size: 14px;
+  color: gray;
+}

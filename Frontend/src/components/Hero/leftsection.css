@@ -1,0 +1,13 @@
+.content h1::after,
+.content h1::before{
+    position: absolute;
+    content: "";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2px;
+    width: 200px;
+    bottom: 2px;
+    left: 22px;
+    background-color: white;
+}
