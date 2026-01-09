@@ -6,7 +6,6 @@ export const fetchProductsByIds = async (ids) => {
       ids: ids.join(","),
     },
   });
-
   return res.data;
 };
 

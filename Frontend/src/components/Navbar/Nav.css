@@ -88,3 +88,15 @@
   font-size: 14px;
   color: gray;
 }
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.cart-footer{
+  box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.15);
+}

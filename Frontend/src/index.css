@@ -19,3 +19,34 @@ html {
 body {
   -ms-overflow-style: none;
 }
+
+
+.Filter::after,
+.Filter::before{
+  position: absolute;
+  top: 0;
+  left: 100%;
+  content: '';
+  display: block;
+  align-items: center;
+  justify-content: center;
+  height:215vh;
+  width: 0.2px;
+  background-color: black;
+  color: black;
+}
+
+.main-content::after,
+.main-content::before{
+  position: absolute;
+  top:5%;
+  left: 6.5%;
+  content: '';
+  display: block;
+  align-items: center;
+  justify-content: center;
+  height:0.2px;
+  width: 93.5%;
+  background-color: black;
+  color: black;
+}
