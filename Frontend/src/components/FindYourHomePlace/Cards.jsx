@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { fetchProductsByIds } from "../../Apis/productApi.js";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { TbCurrentLocation } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const CARD_WIDTH = 340;
 const GAP = 24;
@@ -110,7 +111,9 @@ const Cards = () => {
                   ${isActive ? "text-white" : "text-[#172229]"}
                 `}
               >
-                {product.title}
+                <Link to={`/product/${product.id}`} className={`hover:opacity-80 transition-opacity ${isActive ? "text-white" : "text-[#172229]"}`}>
+                  {product.title}
+                </Link>
               </h3>
 
               <select
@@ -135,7 +138,39 @@ const Cards = () => {
                 Rs. {variant.price.toLocaleString()}
               </p>
 
-              <button className={`mt-4 w-30 py-2 rounded-full ml-3 bg-[#172229] text-white  ${
+              <button 
+                  onClick={() => {
+                    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                    const cartItem = {
+                      productId: product.id,
+                      variantId: variant.id,
+                      title: product.title,
+                      sqft: variant.sqft,
+                      price: variant.price,
+                      image: `http://localhost:4000${variant.image_url}`,
+                      qty: 1,
+                    };
+
+                    const existing = cart.find(
+                      p =>
+                        p.productId === cartItem.productId &&
+                        p.variantId === cartItem.variantId
+                    );
+
+                    if (existing) {
+                      existing.qty += 1;
+                    } else {
+                      cart.push(cartItem);
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+
+                    // 🔔 Navbar ko inform karo
+                    window.dispatchEvent(new Event("cartUpdated"));
+                    window.dispatchEvent(new Event("cartOpen"));
+                  }}
+                  className={`mt-4 w-30 py-2 rounded-full ml-3 bg-[#172229] text-white  ${
                   isActive
                     ? "bg-[#172229] text-white"
                     : "bg-[#FFE9DA] text-[#172229]"

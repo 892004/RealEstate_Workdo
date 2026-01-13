@@ -3,6 +3,7 @@ import { fetchProductsByIds } from "../../Apis/productApi.js";
 import { FaHeart, FaExchangeAlt, FaEye, FaHome,} from "react-icons/fa";
 import { LiaLongArrowAltLeftSolid } from "react-icons/lia";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
+import { Link } from "react-router-dom";
 
 
 const CARD_WIDTH = 700;
@@ -121,7 +122,9 @@ const Cards = () => {
                 </span>
 
                 <h2 className="text-2xl font-bold mb-5">
-                  {product.title}
+                  <Link to={`/product/${product.id}`} className="hover:text-[#fde9d9] transition-colors">
+                    {product.title}
+                  </Link>
                 </h2>
 
                 {/* SQFT */}
@@ -155,7 +158,40 @@ const Cards = () => {
                   </span>
                 </div>
 
-                <button className="bg-[#0f1f25] text-white px-7 py-3 rounded-full w-fit hover:opacity-90">
+                <button 
+                  onClick={() => {
+                    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                    const cartItem = {
+                      productId: product.id,
+                      variantId: variant.id,
+                      title: product.title,
+                      sqft: variant.sqft,
+                      price: variant.price,
+                      image: `http://localhost:4000${variant.image_url}`,
+                      qty: 1,
+                    };
+
+                    const existing = cart.find(
+                      p =>
+                        p.productId === cartItem.productId &&
+                        p.variantId === cartItem.variantId
+                    );
+
+                    if (existing) {
+                      existing.qty += 1;
+                    } else {
+                      cart.push(cartItem);
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+
+                    // 🔔 Navbar ko inform karo
+                    window.dispatchEvent(new Event("cartUpdated"));
+                    window.dispatchEvent(new Event("cartOpen"));
+                  }}
+                  className="bg-[#0f1f25] text-white px-7 py-3 rounded-full w-fit hover:opacity-90"
+                >
                   Add to Cart →
                 </button>
               </div>

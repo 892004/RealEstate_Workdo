@@ -9,7 +9,10 @@ const CollectionPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
-  availability: [], // "in", "out"
+  availability: [], // "in-stock", "out-stock"
+  sizes: [], // "1100", "1200", "1300", etc.
+  productTypes: [], // "home", etc.
+  brands: [], // "real-estate", etc.
 });
 
 

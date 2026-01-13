@@ -94,9 +94,42 @@ const Wishlist = () => {
                 <h1>{item.price}</h1>
               </div>
 
-              <button className="text-[#F7E1D5] py-2 text-[14px] w-30 bg-[#172229] rounded-full flex items-center px-2 cursor-pointer ">
-                Add to Cart <HiArrowLongRight className="ml-1 " />
-              </button>
+              <button 
+                  onClick={() => {
+                    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                    const cartItem = {
+                      productId: item.productId,
+                      variantId: item.variantId,
+                      title: item.title,
+                      sqft: item.sqft,
+                      price: item.price,
+                      image: item.image,
+                      qty: 1,
+                    };
+
+                    const existing = cart.find(
+                      p =>
+                        p.productId === cartItem.productId &&
+                        p.variantId === cartItem.variantId
+                    );
+
+                    if (existing) {
+                      existing.qty += 1;
+                    } else {
+                      cart.push(cartItem);
+                    }
+
+                    localStorage.setItem("cart", JSON.stringify(cart));
+
+                    // 🔔 Navbar ko inform karo
+                    window.dispatchEvent(new Event("cartUpdated"));
+                    window.dispatchEvent(new Event("cartOpen"));
+                  }}
+                  className="text-[#F7E1D5] py-2 text-[14px] w-30 bg-[#172229] rounded-full flex items-center px-2 cursor-pointer "
+                >
+                  Add to Cart <HiArrowLongRight className="ml-1 " />
+                </button>
 
               <button
                 onClick={() => removeItem(item.productId, item.variantId)}

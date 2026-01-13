@@ -23,7 +23,7 @@ const RealEstateHero = () => {
 
   return (
     <section className="hero w-full">
-      <Navbar />
+      {/* <Navbar /> */}
       <ImgContent data={blog} />
       <Article data={blog} />
     </section>

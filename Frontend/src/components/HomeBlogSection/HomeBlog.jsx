@@ -1,14 +1,26 @@
 import React from 'react'
-import Slider from './Slider'
-import blogData from '../../data/data'
+import Slider from "./Slider";
+import blogData from "../../data/data";
 
-const HomeBlog = () => {
+const HomeBlog = ({
+  bg = "#1F282E",        // background color
+  textColor = "#172229" // text color
+}) => {
   return (
-    <section className="Home-blog h-screen w-full bg-[#1F282E] relative p-20 mt-25">
-        <h1 className='text-white text-3xl font-bold'>Homes speaking for themselves</h1>
-        <Slider data={blogData}/>
-    </section>
-  )
-}
+    <section
+      className="h-screen w-full p-20"
+      style={{ backgroundColor: bg }}
+    >
+      <h1
+        className="text-3xl font-bold mb-10"
+        style={{ color: textColor }}
+      >
+        Homes speaking for themselves
+      </h1>
 
-export default HomeBlog
+      <Slider data={blogData} />
+    </section>
+  );
+};
+
+export default HomeBlog;

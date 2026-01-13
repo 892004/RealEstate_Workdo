@@ -6,8 +6,7 @@ const Card = ({ item }) => {
 
    
   return (
-    <section className="min-h-[450px] w-[300px] relative border border-white rounded-xl flex flex-col gap-3">
-      
+    <section className="min-h-[450px] w-[300px] relative border border-white rounded-xl flex flex-col gap-3"> 
       <img
         src={item.img}
         alt={item.title}

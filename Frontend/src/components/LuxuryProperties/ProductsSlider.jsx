@@ -3,7 +3,7 @@ import { TbCurrentLocation } from "react-icons/tb";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
 import { HiMiniArrowLongLeft } from "react-icons/hi2";
 import { HiMiniArrowLongRight } from "react-icons/hi2";
-
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -31,7 +31,7 @@ const ProductsSlider = ({ collection }) => {
 
         setSelectedVariants(defaults);
         setIndex(1);
-      });
+      }); 
   }, [collection]);
 
   // 🔁 CREATE CAROUSEL ITEMS (CLONES)
@@ -77,6 +77,42 @@ const ProductsSlider = ({ collection }) => {
   const next = () => setIndex(prev => prev + 1);
   const prev = () => setIndex(prev => prev - 1);
 
+  // ✅ COMPARE FUNCTION
+  const addToCompare = (product, variant) => {
+    let compare = JSON.parse(localStorage.getItem("compare")) || [];
+
+    const compareItem = {
+      productId: product.id,
+      title: product.title,
+      price: variant.price,
+      image: `http://localhost:4000${variant.image_url}`,
+      variantId: variant.id,
+      sqft: variant.sqft,
+    };
+
+    const exists = compare.find(
+      (p) =>
+        p.productId === compareItem.productId &&
+        p.variantId === compareItem.variantId
+    );
+
+    if (exists) {
+      return; // Already in compare
+    }
+
+    // Limit to 4 items max
+    if (compare.length >= 4) {
+      alert("You can compare maximum 4 products at a time!");
+      return;
+    }
+
+    compare.push(compareItem);
+    localStorage.setItem("compare", JSON.stringify(compare));
+
+    // 🔔 Navigate to compare page
+    window.location.href = "/pages/compare";
+  };
+
   return (  
     <section className="relative px-15 ">
       <div
@@ -110,7 +146,11 @@ const ProductsSlider = ({ collection }) => {
               <h1 className="flex items-center font-bold text-[#FFE9DA] text-[14px] px-4 "><span className="text-[16px] p-2"><TbCurrentLocation /></span>Home</h1>
 
               <div className="px-6">
-                <h3 className="font-semibold text-[18px] text-[#FFE9DA]  tracking-tight ">{product.title}</h3>
+                <h3 className="font-semibold text-[18px] text-[#FFE9DA]  tracking-tight ">
+                  <Link to={`/product/${product.id}`} className="hover:text-[#ffffff] transition-colors">
+                    {product.title}
+                  </Link>
+                </h3>
 
                 <select
                   className="mt-3 w-full text-[#FFE9DA]  border border-[#FFE9DA] rounded-lg px-3 py-2 cursor-pointer "
@@ -137,7 +177,50 @@ const ProductsSlider = ({ collection }) => {
                   Rs. {Number(variant?.price).toLocaleString()}
                 </div>
 
-                <button className="border border-white px-3 py-2 mt-3 rounded-full bg-[#FFE9DA] text-[#172229] font-bold text-[14px] flex items-center cursor-pointer">Add to Cart <span className="px-3 text-2xl"><HiOutlineArrowLongRight /></span></button>
+                <div className="flex gap-2">
+                  <button 
+                    onClick={() => addToCompare(product, variant)}
+                    className="border border-white px-3 py-2 mt-3 rounded-full bg-[#FFE9DA] text-[#172229] font-bold text-[12px] flex items-center cursor-pointer"
+                  >
+                    Compare
+                  </button>
+                  <button 
+                    onClick={() => {
+                      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                      const cartItem = {
+                        productId: product.id,
+                        variantId: variant.id,
+                        title: product.title,
+                        sqft: variant.sqft,
+                        price: variant.price,
+                        image: `http://localhost:4000${variant.image_url}`,
+                        qty: 1,
+                      };
+
+                      const existing = cart.find(
+                        p =>
+                          p.productId === cartItem.productId &&
+                          p.variantId === cartItem.variantId
+                      );
+
+                      if (existing) {
+                        existing.qty += 1;
+                      } else {
+                        cart.push(cartItem);
+                      }
+
+                      localStorage.setItem("cart", JSON.stringify(cart));
+
+                      // 🔔 Navbar ko inform karo
+                      window.dispatchEvent(new Event("cartUpdated"));
+                      window.dispatchEvent(new Event("cartOpen"));
+                    }}
+                    className="border border-white px-3 py-2 mt-3 rounded-full bg-[#FFE9DA] text-[#172229] font-bold text-[14px] flex items-center cursor-pointer"
+                  >
+                    Add to Cart <span className="px-3 text-2xl"><HiOutlineArrowLongRight /></span>
+                  </button>
+                </div>
               </div>
 
              

@@ -100,3 +100,11 @@
 .cart-footer{
   box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.15);
 }
+
+.menu-btn-page:hover .mega-content-page{
+  visibility: visible;
+}
+
+.menu-btn-blog:hover .mega-content-blog{
+  visibility: visible;
+}

@@ -4,7 +4,7 @@ import Logo from "../../public/Images/Logo.webp";
 import ReactCountryFlag from "react-country-flag";
 import { LuUserRound } from "react-icons/lu";
 import { BsCart2 } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Nav.css";
 import menuProduct from "../../public/Images/menu-product.webp";
 import bestsellerThumbnail from "../../public/Images/bestsellerThumbnail.webp";
@@ -20,6 +20,7 @@ import { GoGift } from "react-icons/go";
 import { BsCartX } from "react-icons/bs";
 
 const Navbar = ({ slug }) => {
+  const navigate = useNavigate();
   // remove items from cart
   const removeItem = (productId, variantId) => {
     const updatedCart = cart.filter(
@@ -295,9 +296,9 @@ const Navbar = ({ slug }) => {
                   <img
                     src={bestsellerThumbnail}
                     alt=""
-                    className="h-75 w-75 rounded-xl relative"
+                    className="h-60 w-80 rounded-xl relative"
                   />
-                  <span className="text-black absolute left-37 bottom-0 text-[16px] ">
+                  <span className="text-black absolute left-22 -bottom-8 text-[16px] ">
                     Best Seller
                   </span>
                 </Link>
@@ -307,9 +308,9 @@ const Navbar = ({ slug }) => {
                 >
                   <img
                     src={farmvillaThumbnail}
-                    className="h-75 w-75 rounded-xl"
+                    className="h-60 w-80 rounded-xl"
                   />
-                  <span className="absolute bottom-2 left-2 text-black">
+                  <span className="absolute -bottom-8 left-20 text-black">
                     Farm Villa
                   </span>
                 </Link>
@@ -320,9 +321,9 @@ const Navbar = ({ slug }) => {
                 >
                   <img
                     src={propertyThumbnail}
-                    className="h-75 w-75 rounded-xl"
+                    className="h-60 w-80 rounded-xl"
                   />
-                  <span className="absolute bottom-2 left-2 text-black">
+                  <span className="absolute -bottom-8 left-22 text-black">
                     Properties
                   </span>
                 </Link>
@@ -333,9 +334,9 @@ const Navbar = ({ slug }) => {
                 >
                   <img
                     src={royalvillaThumbnail}
-                    className="h-75 w-75 rounded-xl"
+                    className="h-60 w-80 rounded-xl"
                   />
-                  <span className="absolute bottom-2 left-2 text-black">
+                  <span className="absolute -bottom-8 left-20 text-black">
                     Royal House
                   </span>
                 </Link>
@@ -344,14 +345,31 @@ const Navbar = ({ slug }) => {
           </li>
 
           <li className="flex items-center">
-            <button className="menu-btn">
-              Pages <FaAngleDown />
+            <button className="menu-btn-page flex items-center justify-center cursor-pointer py-10">
+              Pages <FaAngleDown className="m-2"/>
+              <div className="mega-content-page  block p-1 absolute bg-white top-25 text-black text-left rounded-b-xl invisible">
+                <ul className="text-[16px] p-3 flex flex-col items-start gap-2 cursor-pointer">
+                    <Link to = "/pages/Aboutus">About us</Link>
+                    <Link to = "/pages/Contactus">Contact with us </Link>
+                    <Link to = "/pages/Faq">Faq</Link>
+                    <Link to = "/pages/Policy">Privacy Policy</Link>
+                    <Link to = "/pages/Shipping-Delivery">Shipping & Delivery</Link>
+                    <Link to = "/pages/terms-condition">Terms & Conditions</Link>
+                    <Link to = "/pages/wishlist">Wishlist</Link>
+                </ul>
+              </div>
             </button>
           </li>
 
           <li className="flex items-center">
-            <button className="menu-btn">
-              Blog <FaAngleDown />
+            <button className="menu-btn-blog flex items-center justify-center py-10">
+              Blog <FaAngleDown className="m-2"/>
+              <div className="mega-content-blog block p-2 absolute bg-white top-25 text-black text-left rounded-b-xl invisible">
+                    <ul className="text-[16px] px-5 flex flex-col items-start gap-2 cursor-pointer">
+                    <Link to = '/pages/blog'>Blog Page</Link>
+                    <Link to = '/pages/Article'>Artical Page</Link>
+                </ul>
+              </div>
             </button>
           </li>
         </ul>
@@ -651,7 +669,10 @@ const Navbar = ({ slug }) => {
                   </div>
 
                   <div className="btn text-white flex flex-row items-center justify-between absolute bottom-0 ">
-                    <button className="bg-[#172229] px-12 py-3 cursor-pointer ">
+                    <button 
+                      onClick={() => navigate("/pages/cart")}
+                      className="bg-[#172229] px-12 py-3 cursor-pointer "
+                    >
                       View Cart
                     </button>
                     <button className="bg-black py-3 px-8 cursor-pointer">
