@@ -190,13 +190,15 @@ const ProductCard = ({ item }) => {
       setSelectedVariant(newVariant);
     }
   };
+  
 
   return (
-    <div className="cards border w-80 h-110 rounded-xl relative overflow-hidden shadow-sm mt-6 cursor-pointer">
+    <div className="cards border w-80 h-110 rounded-xl relative overflow-hidden shadow-sm mt-6 cursor-pointer" >
       <img
         src={`http://localhost:4000${selectedVariant.image_url}`}
         alt={item.product.title}
         className="w-full h-[220px] object-cover"
+        onClick={() => navigate(`/product-info/${item.product.id}`)}
       />
 
       {/* Hover Icons */}

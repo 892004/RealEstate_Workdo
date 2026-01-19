@@ -228,48 +228,48 @@ const Navbar = ({ slug }) => {
 
             <div className="mega-menu">
               <div className="mega-content flex items-start justify-around gap-10">
-                {/* FarmVilla */}
+                {/* // ---------------- FarmVilla ---------------- */}
                 <div>
                   <h4 className="text-black">FarmVilla</h4>
                   {FarmVilla.map((item) => (
                     <Link
                       key={item.product.id}
-                      to={`/FarmVilla/${item.product.id}`}
+                      to={`/product/${item.product.id}`}
                       className="menu-link"
                     >
                       {item.product.title}
                     </Link>
                   ))}
                 </div>
-
-                {/* Luxury Property */}
+                {/* // ---------------- Luxury Property ---------------- */}
                 <div>
                   <h4 className="text-black">Luxury Property</h4>
                   {Properties.map((item) => (
+                    <>
+                      {console.log("NAVBAR ITEM 👉", item)}
                     <Link
                       key={item.product.id}
-                      to={`/Property/${item.product.id}`}
+                      to={`/product/${item.product.id }`}
                       className="menu-link"
-                    >
+                      >
                       {item.product.title}
                     </Link>
+                      </>
                   ))}
                 </div>
-
-                {/* Royal House */}
+                {/* // ---------------- Royal House ---------------- */}
                 <div>
                   <h4 className="text-black">Royal House</h4>
                   {RoyalHouse.map((item) => (
                     <Link
                       key={item.product.id}
-                      to={`/RoyalHouse/${item.product.id}`}
+                      to={`/product/${item.product.id}`}
                       className="menu-link"
                     >
                       {item.product.title}
                     </Link>
                   ))}
                 </div>
-
                 {/* Image */}
                 <div className="image">
                   <img
@@ -346,16 +346,16 @@ const Navbar = ({ slug }) => {
 
           <li className="flex items-center">
             <button className="menu-btn-page flex items-center justify-center cursor-pointer py-10">
-              Pages <FaAngleDown className="m-2"/>
+              Pages <FaAngleDown className="m-2" />
               <div className="mega-content-page  block p-1 absolute bg-white top-25 text-black text-left rounded-b-xl invisible">
                 <ul className="text-[16px] p-3 flex flex-col items-start gap-2 cursor-pointer">
-                    <Link to = "/pages/Aboutus">About us</Link>
-                    <Link to = "/pages/Contactus">Contact with us </Link>
-                    <Link to = "/pages/Faq">Faq</Link>
-                    <Link to = "/pages/Policy">Privacy Policy</Link>
-                    <Link to = "/pages/Shipping-Delivery">Shipping & Delivery</Link>
-                    <Link to = "/pages/terms-condition">Terms & Conditions</Link>
-                    <Link to = "/pages/wishlist">Wishlist</Link>
+                  <Link to="/pages/Aboutus">About us</Link>
+                  <Link to="/pages/Contactus">Contact with us </Link>
+                  <Link to="/pages/Faq">Faq</Link>
+                  <Link to="/pages/Policy">Privacy Policy</Link>
+                  <Link to="/pages/Shipping-Delivery">Shipping & Delivery</Link>
+                  <Link to="/pages/terms-condition">Terms & Conditions</Link>
+                  <Link to="/pages/wishlist">Wishlist</Link>
                 </ul>
               </div>
             </button>
@@ -363,11 +363,10 @@ const Navbar = ({ slug }) => {
 
           <li className="flex items-center">
             <button className="menu-btn-blog flex items-center justify-center py-10">
-              Blog <FaAngleDown className="m-2"/>
+              Blog <FaAngleDown className="m-2" />
               <div className="mega-content-blog block p-2 absolute bg-white top-25 text-black text-left rounded-b-xl invisible">
-                    <ul className="text-[16px] px-5 flex flex-col items-start gap-2 cursor-pointer">
-                    <Link to = '/pages/blog'>Blog Page</Link>
-                    <Link to = '/pages/Article'>Artical Page</Link>
+                <ul className="text-[16px] px-5 flex flex-col items-start gap-2 cursor-pointer">
+                  <Link to="/pages/blog">Blog Page</Link>
                 </ul>
               </div>
             </button>
@@ -486,8 +485,8 @@ const Navbar = ({ slug }) => {
             {/* Drawer */}
             <div
               className={`fixed top-0 right-0 h-full w-[400px] bg-white z-50 shadow-xl flex flex-col
-  transform transition-transform duration-300 ease-in-out
-  ${isCartOpen ? "translate-x-0" : "translate-x-full"}`}
+                transform transition-transform duration-300 ease-in-out
+                ${isCartOpen ? "translate-x-0" : "translate-x-full"}`}
             >
               {/* ================= HEADER (STICKY) ================= */}
               <div className="cart-heading sticky top-0 z-10 h-20 w-full bg-[#172229] flex items-center justify-between px-5">
@@ -592,33 +591,35 @@ const Navbar = ({ slug }) => {
 
                     {/* SLIDER */}
                     <div className="flex gap-4 overflow-hidden">
-                      {visibleProducts.map((item) => (
-                        <div
-                          key={item.id}
-                          className="min-w-[360px] border border-black rounded-xl p-4 flex items-center gap-4 bg-white"
-                        >
-                          <img
-                            src={`http://localhost:4000${item.variants?.[0]?.image_url}`}
-                            alt={item.title}
-                            className="h-20 w-20 object-cover rounded-lg"
-                          />
+                      {visibleProducts.map((item) => {
+                        console.log("ITEM:", item);
+                        return (
+                          <div
+                            key={item.id}
+                            className="min-w-[360px] border border-black rounded-xl p-4 flex items-center gap-4 bg-white"
+                          >
+                            <img
+                              src={`http://localhost:4000${item.variants?.[0]?.image_url}`}
+                              alt={item.title}
+                              className="h-20 w-20 object-cover rounded-lg"
+                            />
 
-                          <div className="flex flex-col text-black">
-                            <h3 className="font-semibold">{item.title}</h3>
+                            <div className="flex flex-col text-black">
+                              <h3 className="font-semibold">{item.title}</h3>
 
-                            <p className="mt-1">
-                              Rs. {item.variants?.[0]?.price}
-                            </p>
-
-                            <Link
-                              to={`/product/${item.id}`}
-                              className="text-sm underline mt-2"
-                            >
-                              Details
-                            </Link>
+                              <p className="mt-1">
+                                Rs. {item.variants?.[0]?.price}
+                              </p>
+                              <Link
+                                to={`/product/${item.slug}`}
+                                className="text-sm underline mt-2"
+                              >
+                                Details
+                              </Link>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -669,15 +670,17 @@ const Navbar = ({ slug }) => {
                   </div>
 
                   <div className="btn text-white flex flex-row items-center justify-between absolute bottom-0 ">
-                    <button 
+                    <button
                       onClick={() => navigate("/pages/cart")}
                       className="bg-[#172229] px-12 py-3 cursor-pointer "
                     >
                       View Cart
                     </button>
-                    <button className="bg-black py-3 px-8 cursor-pointer">
-                      Proceed to checkout
-                    </button>
+                    <Link to="/pages/CheckOut">
+                      <button className="bg-black py-3 px-8 cursor-pointer">
+                        Proceed to checkout
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

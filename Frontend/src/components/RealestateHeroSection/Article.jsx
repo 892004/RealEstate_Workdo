@@ -8,7 +8,7 @@ import { FaUserLarge } from "react-icons/fa6";
 
 
 
-const Article = (props) => {
+const   Article = (props) => {
   console.log(props.data)
   const [comments, setComments] = useState(() => {
   const savedComments = localStorage.getItem("comments");

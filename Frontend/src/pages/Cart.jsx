@@ -6,17 +6,26 @@
   const Cart = () => {
     const [cart, setCart] = useState([]);
     const [subTotal, setSubTotal] = useState(0);
+    const [shipping, setShipping] = useState(0);
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
       const getCart = () => {
         const data = JSON.parse(localStorage.getItem("cart")) || [];
         setCart(data);
         
-        // Calculate subtotal
-        const total = data.reduce((sum, item) => {
-          return sum + (item.price * item.quantity);
+        // Calculate subtotal - using correct property name 'qty'
+        const subtotal = data.reduce((sum, item) => {
+          return sum + (item.price * item.qty);
         }, 0);
-        setSubTotal(total);
+        setSubTotal(subtotal);
+        
+        // Calculate shipping (free for orders above 1000, otherwise 50)
+        const shippingCost = subtotal > 1000 ? 0 : 50;
+        setShipping(shippingCost);
+        
+        // Calculate total
+        setTotal(subtotal + shippingCost);
       };
 
       // Initial load
@@ -32,19 +41,23 @@
       };
     }, []);
 
-    const updateQuantity = (id, newQuantity) => {
+    const updateQuantity = (productId, variantId, newQuantity) => {
       if (newQuantity < 1) return;
       
       const updatedCart = cart.map(item => 
-        item.id === id ? { ...item, quantity: newQuantity } : item
+        (item.productId === productId && item.variantId === variantId) 
+          ? { ...item, qty: newQuantity } 
+          : item
       );
       
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       window.dispatchEvent(new Event("cartUpdated"));
     };
 
-    const removeFromCart = (id) => {
-      const updatedCart = cart.filter(item => item.id !== id);
+    const removeFromCart = (productId, variantId) => {
+      const updatedCart = cart.filter(item => 
+        !(item.productId === productId && item.variantId === variantId)
+      );
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       window.dispatchEvent(new Event("cartUpdated"));
     };
@@ -129,17 +142,20 @@
                   
                   <div className="flex justify-between mb-4">
                     <span>Shipping</span>
-                    <span className="font-semibold">Free</span>
+                    <span className="font-semibold">{shipping === 0 ? 'Free' : `Rs. ${shipping.toLocaleString()}`}</span>
                   </div>
                   
                   <div className="flex justify-between mb-6 text-lg font-bold">
                     <span>Total</span>
-                    <span>Rs. {subTotal.toLocaleString()}</span>
+                    <span>Rs. {total.toLocaleString()}</span>
                   </div>
                   
+
+                  <Link to='/pages/Checkout'>
                   <button className="w-full bg-black text-white py-3 rounded mb-3 hover:bg-gray-800">
                     Proceed to Checkout
                   </button>
+                  </Link>
                   
                   <Link 
                     to="/collection/best-seller"
