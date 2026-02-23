@@ -6,6 +6,7 @@ const ProductSection = ({ products, title , filters , setFilters}) => {
   const PRODUCTS_PER_PAGE = 8;
   const [currentPage, setCurrentPage] = useState(1);
 
+
   // 🔹 Filter products first
   const filteredProducts = products.filter(item => {
     // ---------------- AVAILABILITY FILTER ----------------
@@ -85,12 +86,12 @@ const ProductSection = ({ products, title , filters , setFilters}) => {
 
 
   return (
-  <section className="w-[70%] p-6 flex flex-col">
-  <Productheading title={title} />
+  <section className="product-section w-[70%] p-6 flex flex-col">
+  <Productheading title={title}  filters={filters} setFilters={setFilters}/>
 
 
   {/* 🔥 FIXED HEIGHT GRID */}
-  <div className="grid grid-cols-3  gap-6 mt-6 min-h-[900px]">
+  <div className="cards grid grid-cols-3  gap-6 mt-6 min-h-[900px]">
     {currentProducts.map(item => (
       <Card key={item.product.id} item={item} />
     ))}

@@ -1,0 +1,129 @@
+/*  collection-heading*/
+@media(max-width:768px) {
+    .top-content{
+        height: 40vh;
+        width: 100%;
+        padding: 20px;
+    }
+    .top-content h1{
+       font-size: 26px;
+    }
+    .top-content p{
+        font-size: 14px;
+        width: 100%;
+        line-height: 1.2;
+        letter-spacing: 0.5px;
+        font-weight: 300;
+        overflow: hidden;
+    }
+
+    .heading{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+    }
+    .heading .slide-icon{
+        visibility: visible;
+        border: 2px solid black;
+        border-radius: 10%;
+        padding: 5px;
+        transform: translateX(10px);
+    }
+     .slide-icon span{
+        font-size: 28px;
+    }
+
+    .select{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 120px;
+    }
+
+    .select select{
+        padding: 10px;
+    }
+   
+    .featured{
+        margin-right: 10%;
+    }
+    .featured span{
+        font-size: 14px;
+    }
+
+    .heading h1{
+        display: none;
+    }
+    .heading p{
+        display: none;
+    }
+   .product-section{
+    height: 100vh;
+    width: 100%;
+   }
+   .product-section .cards{
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
+   }
+
+  /* OPEN */
+.slide-in {
+  animation: slideX 0.5s ease-in forwards;
+}
+
+/* CLOSE */
+.slide-out {
+  animation: slidereturn 0.5s ease-out;
+}
+
+   @keyframes slideX {
+    from{
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+   }
+
+
+   @keyframes slidereturn{
+    from{
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+   }
+}
+
+@media(max-width:768px){
+
+  /* Hide desktop sidebar */
+  .Filter{
+    display: none;
+  }
+
+  /* Show filter content inside slider */
+
+  .filter-content{
+    position: relative;
+    width: 100%;
+    color: black;
+}
+
+.filter-content hr{
+    opacity: 0.2;
+  }
+
+  .filter-content h1 {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  color: black !important;
+  position: static !important;
+}
+
+
+}

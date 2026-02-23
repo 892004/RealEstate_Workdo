@@ -44,7 +44,6 @@ const Policy = () => {
 
            <p>We use the Device Information that we collect to help us screen for potential risk and fraud (in particular, your IP address), and more generally to improve and optimize our Site (for <br/> example, by generating analytics about how our customers browse and interact with the Site, and to assess the success of our marketing and advertising campaigns).</p>
         </div>
-        <Footer />
    </section>
   )
 }

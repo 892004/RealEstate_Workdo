@@ -114,7 +114,7 @@ const ProductsSlider = ({ collection }) => {
   };
 
   return (  
-    <section className="relative px-15 ">
+    <section className="product-slider relative px-15 ">
       <div
         ref={trackRef}
         className="flex"
@@ -133,7 +133,7 @@ const ProductsSlider = ({ collection }) => {
             <div
               key={`${product.id}-${i}`}
               style={{ width: CARD_WIDTH }}
-              className="flex flex-col items-start  gap-2 bg-[#0f1a20] rounded-2xl overflow-hidden h-[65vh] border border-white  text-white shrink-0"
+              className="flex flex-col items-start   gap-2 bg-[#0f1a20] rounded-2xl overflow-hidden h-[65vh] border border-white  text-white shrink-0"
             >
               <div className="relative h-[220px] ">
                 <img
@@ -143,9 +143,9 @@ const ProductsSlider = ({ collection }) => {
                 />
               </div>
 
-              <h1 className="flex items-center font-bold text-[#FFE9DA] text-[14px] px-4 "><span className="text-[16px] p-2"><TbCurrentLocation /></span>Home</h1>
+              <h1 className="home flex items-center font-bold text-[#FFE9DA] text-[14px] px-4 "><span className="text-[16px] p-2"><TbCurrentLocation /></span>Home</h1>
 
-              <div className="px-6">
+              <div className="px-6 ">
                 <h3 className="font-semibold text-[18px] text-[#FFE9DA]  tracking-tight ">
                   <Link to={`/product/${product.id}`} className="hover:text-[#ffffff] transition-colors">
                     {product.title}

@@ -6,7 +6,8 @@ const Card = ({ item }) => {
 
    
   return (
-    <section className="min-h-[450px] w-[300px] relative border border-white rounded-xl flex flex-col gap-3"> 
+   <section className="card-main h-auto min-h-[60vh] min-w-[20%] bg-[#172229] relative border border-white rounded-xl flex flex-col gap-5 p-1"  >
+
       <img
         src={item.img}
         alt={item.title}
@@ -29,9 +30,10 @@ const Card = ({ item }) => {
         {item.para}
       </p>
 
-      <Link to ={`/blog/${item.slug}`}className="py-2 bg-[#FFE7D9] rounded-full w-40 text-left px-2 ml-2 text-[14px] font-medium flex items-center cursor-pointer ">
+      <Link to ={`/blog/${item.slug}`}className=" py-2 bg-[#FFE7D9] rounded-full w-40 text-left px-5 ml-2 text-[14px] font-medium flex flex-row items-center cursor-pointer ">
         {item.button}
-        <span className="ml-5 text-xl">
+        {/* Show details  */}
+        <span className="ml-3 text-xl">
           <LiaLongArrowAltRightSolid />
         </span>
       </Link>

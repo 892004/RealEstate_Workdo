@@ -74,7 +74,7 @@ const Cards = () => {
   }, [animate]);
 
   return (
-    <section className="relative overflow-hidden -translate-y-30">
+    <section className="card  relative overflow-hidden -translate-y-30">
       {/* SLIDER */}
       <div
         ref={trackRef}
@@ -94,7 +94,7 @@ const Cards = () => {
             <div
               key={i}
               style={{ width: CARD_WIDTH }}
-              className="flex shrink-0 h-70 rounded-2xl overflow-hidden bg-[#0f1f25]"
+              className="content-2 flex shrink-0 h-70 rounded-2xl overflow-hidden"
             >
               {/* LEFT IMAGE */}
               <div className="relative w-1/2">
@@ -201,7 +201,7 @@ const Cards = () => {
       </div>
 
       {/* ARROWS */}
-      <div className="flex justify-between absolute bottom-2  w-full px-15 ">
+      <div className="arrows flex justify-between absolute bottom-2  w-full px-15 ">
         <ArrowButton onClick={prev}>
           <LiaLongArrowAltLeftSolid />
         </ArrowButton>

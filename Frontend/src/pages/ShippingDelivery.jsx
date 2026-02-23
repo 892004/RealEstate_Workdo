@@ -149,7 +149,6 @@ const ShippingDelivery = () => {
           <br /> item.
         </p>
       </div>
-      <Footer />
     </section>
   );
 };

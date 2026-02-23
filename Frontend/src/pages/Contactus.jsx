@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Footer from "../components/Footer/Footer";
-
+import '../components/Contactus/contactus.css'
 
 const Contactus = () => {
   return (
@@ -19,17 +19,17 @@ const Contactus = () => {
         </Link>
 
         <h2 className="text-3xl font-bold px-2">Contact with us</h2>
-        <h2 className="text-3xl font-bold px-2 absolute left-[44%] py-18">
+        <h3 className="text-3xl font-bold px-2 absolute left-[44%] py-10">
           Contact form
-        </h2>
-        <p className="px-2 -translate-y-2">
+        </h3>
+        <p className="para px-2 w-130 -translate-y-2">
           With that in mind, we strive to deliver accurate, trustworthy, and
-          engaging <br />
+          engaging
           content to our users. Our team of experts, researchers, and writers
-          work <br />
+          work
           tirelessly to curate high-quality articles, guides, and resources that
           cover
-          <br /> various domains such as technology, science, health, business,
+          various domains such as technology, science, health, business,
           and more.
         </p>
       </div>
@@ -81,7 +81,7 @@ const Contactus = () => {
               </div>
              </div>
           
-           <div className="name flex flex-row items-start justify-start gap-5 p-5 ">
+           <div className="desc flex flex-row items-start justify-start gap-5 p-5 ">
               <div className="first-name flex flex-col">
                 <label>Description<span className="text-red-500">*</span>:</label>
                 <textarea rows={5} cols={90} className="border"></textarea>

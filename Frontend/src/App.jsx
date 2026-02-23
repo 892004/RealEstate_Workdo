@@ -27,6 +27,8 @@ import Article from "./components/RealestateHeroSection/Article";
 import CheckOut from "./pages/CheckOut";
 import NonavLayout from "./NonavLayout";
 import ProductInfo from "./pages/ProductInfo";
+import AllCollection from "./pages/AllCollection";
+import CategoryProductSection from "./components/CategoryProductSection";
 
 export default function App() {
   return (
@@ -55,6 +57,8 @@ export default function App() {
         <Route path="/pages/blog" element={<Blog />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/product-info/:id" element={<ProductInfo />} />
+        <Route path="/pages/all-collections" element={<AllCollection />} />
+        <Route path="/category-products" element={<CategoryProductSection />} />
       </Route>
 
       {/* No nav layout */}

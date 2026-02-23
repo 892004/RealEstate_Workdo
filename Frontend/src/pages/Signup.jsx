@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { Link} from "react-router-dom";
 import api from "../Apis/Api";
+import '../components/login/login.css'
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -58,7 +61,7 @@ const Signup = () => {
       }
 
       // 4) Signup ke baad normal user → products list
-      navigate("/admin/products");
+      navigate("/collection/best-seller");
     } catch (err) {
       console.error(err);
       const backendMsg = err.response?.data?.message;
@@ -70,6 +73,15 @@ const Signup = () => {
 
   return (
     <section className="Signup flex flex-col items-center justify-center p-5">
+
+       <Link to="/collection/best-seller">
+        <p className="flex items-center justify-center text-[14px] font-medium mb-2 mr-5">
+          <span className="text-2xl border p-1 rounded-full m-1">
+            <IoIosArrowRoundBack />
+          </span>{" "}
+          Back to Shop
+        </p>
+      </Link>
       <h1 className="text-4xl font-semibold mb-5 ">Register</h1>
 
       {error && <p className="text-red-500 text-sm mb-3">{error}</p>}

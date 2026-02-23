@@ -7,15 +7,16 @@ import amex from '../../public/Images/amex.jpg'
 import paypal from '../../public/Images/paypal.jpg'
 import dinersclub from '../../public/Images/dinersclub.jpg'
 import discover from '../../public/Images/discover.jpg'
+import './footer.css'
 
 
 const Footer = () => {
   return (
-    <section className="Footer relative  h-[60vh] bg-[#1F282E] flex flex-row justify-center gap-35">
+    <section className="Footer relative  h-[60vh] bg-[#1F282E] flex flex-row justify-center gap-20">
             {/* subscribe */}
             <div className="subscribe flex flex-col gap-5 p-4">
                 <h1 className='text-2xl text-white font-bold '>Subscribe newsletter and get -20% off</h1>
-                <p className='text-white'>Discover the perfect family haven in our spacious suburban <br/>residences. These thoughtfully designed homes provide ample <br/>room for your growing family to thrive.</p>
+                <p className='text-white w-2xl'>Discover the perfect family haven in our spacious suburban residences. These thoughtfully designed homes provide ample room for your growing family to thrive.</p>
                
             </div>
 
@@ -43,7 +44,7 @@ const Footer = () => {
 
 
             {/* share */}
-             <div className="Account flex flex-col p-4 text-white list-none gap-3  className ='cursor-pointer'">
+             <div className="share flex flex-col p-4 text-white list-none gap-3  className ='cursor-pointer'">
                  <h1 className='text-white text-2xl font-bold'>Share:</h1>
                  <li className ='cursor-pointer'>Youtube</li>
                  <li className ='cursor-pointer'>Facebook</li>

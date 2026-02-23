@@ -7,9 +7,9 @@ const RealEstatePage = () => {
   const { id } = useParams();
 
   return (
-    <section className="Real-estate relative ">
+    <section className="Real-estate relative  ">
         <RealEstateHero />
-        
+
     </section>
   );
 };

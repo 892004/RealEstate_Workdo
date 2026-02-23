@@ -1,0 +1,117 @@
+@media (max-width:768px) {
+    .Artical-hero {
+        height: auto;
+        min-height: 100vh;
+        width: 100%;
+    }
+    .Artical-hero .img-content{
+        height: 50vh;
+        width: 100%;
+    }
+    .Artical-hero .img-content img{
+        object-fit: cover;
+    }
+
+    .Artical-hero .content{
+        padding:2px;
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .content .artical-buttons{
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .content .artical-heading{
+        font-size: 28px;
+    }
+    .content .artical-para{
+        width: 100%;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+}
+
+
+/* artical */
+@media (max-width:768px) {
+    .artical{
+        padding: 10px;
+        position: relative;
+    }
+    .artical .about-user{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: 16px;
+        padding: 10px;
+    }
+    .artical .about-user i,span{
+        font-size: 16px;
+    }
+    .artical .about-user .share-icon{
+        font-size: 26px;
+    }
+
+    .artical h1{
+        font-size: 28px;
+        line-height: 1.2;
+        padding: 10px;
+    }
+   .artical .article-content{
+     height: auto;
+     min-height: 100vh;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+    
+
+    }
+    .article-content .left-section{
+        height: auto;
+        width: 100%;
+        background-color: transparent;
+        padding: 5px;
+        gap: 2px;
+    }
+
+    .article-content .left-section img{
+        height:40vh;
+    }
+
+    .article-content .left-section .quotes-para{
+        width: 100%;
+        transform: translateY(-10%);
+        font-size: 18px;
+    }
+
+    .article-content .left-section .quotes-para span{
+        font-size: 24px;
+    }
+    .article-content .left-section .tags{
+        margin-bottom:20% ;
+    }
+    
+
+    .article-content .right-section{
+        height: auto;
+        width: 100%;
+    }
+    
+    .article-content .right-section {
+        padding: 10px;
+    }
+
+    .article-content .right-section .card-1{
+        height: 70vh;   
+    }
+
+    .article-content .right-section .card-1 h1{
+        font-size: 18px
+    }
+
+}
+
+

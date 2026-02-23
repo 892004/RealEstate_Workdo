@@ -1,0 +1,37 @@
+@media (max-width:768px){
+    .wishlist{
+            height: auto;
+    min-height: 100vh;
+    
+
+    }
+
+    .wishlist .top-content{
+        height: 30vh;
+    }
+
+    .wishlist .wishlist-nav{
+        display: none;
+    }
+
+    .wishlist .wishlist-items{
+        height: auto;
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 10px;
+        display: flex;
+        overflow: visible;
+        flex-direction: column;
+    }
+    .wishlist .wishlist-items .items{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .wishlist .btn button{
+        padding: 10px 20px;
+    }
+
+
+}

@@ -4,7 +4,7 @@ import ImgContent from "./Img";
 import Article from "./Article";
 import blogData from "../../data/data";
 import Navbar from "../Navbar/Navbar";
-
+import '../Artical/artical.css'
 
 const RealEstateHero = () => {
  const { slug } = useParams();
@@ -22,7 +22,7 @@ const RealEstateHero = () => {
 
 
   return (
-    <section className="hero w-full">
+    <section className="Artical-hero w-full">
       {/* <Navbar /> */}
       <ImgContent data={blog} />
       <Article data={blog} />

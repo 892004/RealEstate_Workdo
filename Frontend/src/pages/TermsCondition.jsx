@@ -67,7 +67,6 @@ We have made every effort to display as accurately as possible the colors and im
 We reserve the right, but are not obligated, to limit the sales of our products or Services to any person, geographic region or jurisdiction. We may exercise this right on a case-by-case <br />basis. We reserve the right to limit the quantities of any products or services that we offer. All descriptions of products or product pricing are subject to change at anytime without<br /> notice, at the sole discretion of us. We reserve the right to discontinue any product at any time. Any offer for any product or service made on this site is void where prohibited.
         </p>
       </div>
-      <Footer />
     </section>
   );
 };

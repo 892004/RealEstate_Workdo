@@ -1,0 +1,31 @@
+@media (max-width:768px){
+    .compare{
+    height: auto;
+    min-height: 100vh;  
+    }
+
+    .compare .top-content{
+        height: 25vh;
+    }
+
+    .compare .compare-nav{
+        display: none;
+    }
+
+    .compare .compare-items{
+        height: auto;
+        width: 100%;
+    }
+    .compare .compare-items .items{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
+    .clear-all{
+        transform: translateX(-5    0%)
+    }
+
+
+}

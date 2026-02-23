@@ -9,6 +9,10 @@
 ::-webkit-scrollbar {
   display: none;
 }
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
 
 /* Firefox */
 html {
@@ -18,6 +22,22 @@ html {
 /* IE / old Edge */
 body {
   -ms-overflow-style: none;
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+Footer{
+  position: absolute;
+  bottom: 0;
+}
+
+.main-content {
+  flex: 1;          /* THIS pushes footer to bottom */
+  position: relative;
 }
 
 

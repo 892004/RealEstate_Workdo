@@ -4,7 +4,7 @@ import Bottom from './Bottom'
 
 const HomePlace = () => {
   return (
-    <section className="home-place h-screen relative  ">
+   <section className="home-place min-h-screen w-full relative">
         <Top />
         <Bottom />
     </section>

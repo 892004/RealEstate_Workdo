@@ -1,98 +1,102 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
-import { LiaLongArrowAltLeftSolid } from "react-icons/lia";
-import { LiaLongArrowAltRightSolid } from "react-icons/lia";
+import { LiaLongArrowAltLeftSolid, LiaLongArrowAltRightSolid } from "react-icons/lia";
 
 
-const CARD_WIDTH = 200;
+const isMobile = window.innerWidth < 768;
+
 
 const Slider = ({ data }) => {
-  const slides = [
-    data[data.length - 1],
-    ...data,
-    data[0],
-  ];
+
+  const slides = [data[data.length - 1], ...data, data[0]];
 
   const [index, setIndex] = useState(1);
   const [transition, setTransition] = useState(true);
 
-  const next = () => {
-    setIndex((prev) => prev + 1);
-  };
+  // ✅ Responsive CARD WIDTH state
+  const [cardWidth, setCardWidth] = useState(290);
 
-  const prev = () => {
-    setIndex((prev) => prev - 1);
-  };
+  // ✅ Update card width on resize
+  useEffect(() => {
+    const updateWidth = () => {
+      if (window.innerWidth < 768) {
+        setCardWidth(300  ); // Mobile width
+      } else {
+        setCardWidth(290); // Desktop width
+      }
+    };
 
-  // 🔥 RESET LOGIC (MAGIC PART)
+    updateWidth(); // run first time
+    window.addEventListener("resize", updateWidth);
+
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  const next = () => setIndex((prev) => prev + 1);
+  const prev = () => setIndex((prev) => prev - 1);
+
+  // 🔥 Reset loop logic
   useEffect(() => {
     if (index === slides.length - 1) {
       setTimeout(() => {
         setTransition(false);
         setIndex(1);
-      }, 1000);
+      }, 500);
     }
 
     if (index === 0) {
       setTimeout(() => {
         setTransition(false);
         setIndex(slides.length - 2);
-      }, 1000);
+      }, 500);
     }
   }, [index]);
 
-  // enable transition back
   useEffect(() => {
     if (!transition) {
-      requestAnimationFrame(() => {
-        setTransition(true);
-      });
+      requestAnimationFrame(() => setTransition(true));
     }
   }, [transition]);
 
   return (
-    <section className="relative h-full w-full overflow-x-hidden mt-5">
-      
-      {/* TRACK */}
-      <div
-        className={`flex gap-10 ${
-          transition ? "transition-transform duration-500" : ""
-        }`}
-        style={{
-          transform: `translateX(-${index * CARD_WIDTH}px)`,
-        }}
-      >
-        {slides.map((item, i) => (
-          <Card key={i} item={item} />
-        ))}
-      </div>
+    <section className="slider-main relative w-full overflow-hidden mt-5">
 
-      {/* LEFT */}
+    {/* TRACK */}
+    <div
+      className={`animation flex gap-10 ${
+        transition ? "transition-transform duration-500" : ""
+      }`}
+      style={{
+        transform:
+          window.innerWidth < 768
+            ? "translateX(0px)"
+            : `translateX(-${index * cardWidth}px)`,
+      }}
+    >
+      {slides.map((item, i) => (
+        <Card key={i} item={item} />
+      ))}
+    </div>
+
+    {/* Buttons only on Desktop */}
 
 
-      <div className="buttons translate-y-10">
-            <button
-        onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-transparent border border-white text-white cursor-pointer px-4 py-1 rounded-full"
-      >
-       <LiaLongArrowAltLeftSolid />
-      </button>
 
-        <div className="line border border-white  w-[90%] bg-white opacity-50 absolute right-17">
+        <button
+          onClick={prev}
+          className="absolute left-2 top-1/2 -translate-y-1/2 border border-white text-white px-3 py-1 rounded-full bg-[#172229]"
+          >
+          <LiaLongArrowAltLeftSolid />
+        </button>
 
-        </div>
-      {/* RIGHT */}
-      <button
-        onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-transparent  border border-white text-white cursor-pointer px-4 py-1 rounded-full"
-      >
-       <LiaLongArrowAltRightSolid />
-
-      </button>
-
-      </div>
-    
-    </section>
+        <button
+          onClick={next}
+          className="absolute right-2 top-1/2 -translate-y-1/2 border border-white text-white px-3 py-1 rounded-full bg-[#172229]"
+          >
+          <LiaLongArrowAltRightSolid />
+        </button>
+     
+  </section>
   );
 };
 

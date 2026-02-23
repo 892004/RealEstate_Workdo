@@ -1,5 +1,6 @@
 import React from 'react'
 import rightThumbnail from '../../public/Images/rightThumbnail.webp'
+
 const CategoryRight = () => {
   return (
     <section className="category-right">

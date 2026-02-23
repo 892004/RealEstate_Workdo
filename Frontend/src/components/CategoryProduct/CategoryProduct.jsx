@@ -4,7 +4,7 @@ import CategoryBottom from './CategoryBottom'
 
 const CategoryProduct = () => {
   return (
-  <section className="category-product h-screen ">
+  <section className="category-product h-screen w-full relative ">
     <CategoryTop />
     <CategoryBottom />
   </section>

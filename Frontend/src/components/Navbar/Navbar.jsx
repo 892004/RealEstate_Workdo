@@ -18,13 +18,14 @@ import { fetchProductsByIds } from "../../Apis/productApi";
 import { IoTicketOutline } from "react-icons/io5";
 import { GoGift } from "react-icons/go";
 import { BsCartX } from "react-icons/bs";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = ({ slug }) => {
   const navigate = useNavigate();
   // remove items from cart
   const removeItem = (productId, variantId) => {
     const updatedCart = cart.filter(
-      (item) => !(item.productId === productId && item.variantId === variantId)
+      (item) => !(item.productId === productId && item.variantId === variantId),
     );
 
     setCart(updatedCart);
@@ -115,7 +116,7 @@ const Navbar = ({ slug }) => {
 
   const visibleProducts = Array.from(
     { length: ITEMS_PER_SLIDE },
-    (_, i) => products[(slideIndex + i) % products.length]
+    (_, i) => products[(slideIndex + i) % products.length],
   );
 
   useEffect(() => {
@@ -142,8 +143,6 @@ const Navbar = ({ slug }) => {
     setFarmVilla(response);
   }
 
-  console.log(FarmVilla);
-
   // fetch api data property
   async function getPropertyProduct() {
     const url = "http://localhost:4000/api/products/by-collection/properties";
@@ -151,7 +150,6 @@ const Navbar = ({ slug }) => {
     response = await response.json();
     setProperties(response);
   }
-  console.log(Properties);
 
   // fetch api data royalhouse
   async function getRoyalHouseProduct() {
@@ -160,7 +158,6 @@ const Navbar = ({ slug }) => {
     response = await response.json();
     setRoyalHouse(response);
   }
-  console.log(RoyalHouse);
 
   useEffect(() => {
     const openCart = () => setIsCartOpen(true);
@@ -192,7 +189,7 @@ const Navbar = ({ slug }) => {
     let updatedCart = [...cart];
 
     const index = updatedCart.findIndex(
-      (item) => item.productId === productId && item.variantId === variantId
+      (item) => item.productId === productId && item.variantId === variantId,
     );
 
     if (index === -1) return;
@@ -216,8 +213,35 @@ const Navbar = ({ slug }) => {
 
   const subTotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
+  const [openHamburg, setopenHamburg] = useState(false);
+  // MOBILE (hamburger) states
+  const [mobileLangOpen, setMobileLangOpen] = useState(false);
+  const [mobileCurrOpen, setMobileCurrOpen] = useState(false);
+
+  const [isOpen, setisOpen] = useState(false);
+  const [isOpneShopall, setisOpneShopall] = useState(false);
+  const [showFarmvilla, setshowFarmvilla] = useState(false);
+  const [showLuxury, setShowLuxury] = useState(false);
+  const [showRoyal, setShowRoyal] = useState(false);
+
+  useEffect(() => {
+  const handleResize = () => {
+    if (window.innerWidth >= 768) {
+      setopenHamburg(false);
+      setisOpneShopall(false);
+      setshowFarmvilla(false);
+      setisOpen(false);
+    }
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
+
   return (
-    <section className="Navbar sticky h-25 w-screen bg-[#172229] flex flex-row items-center justify-around border-b border-white">
+    <section className="Navbar sticky h-25 w-full bg-[#172229] flex flex-row items-center justify-around border-b border-white">
       {/* ---------------- LEFT MENU ---------------- */}
       <div className="list-items flex items-center justify-center">
         <ul className="flex items-center justify-center gap-5 text-[#FFE7D9] text-[15px] cursor-pointer">
@@ -246,15 +270,14 @@ const Navbar = ({ slug }) => {
                   <h4 className="text-black">Luxury Property</h4>
                   {Properties.map((item) => (
                     <>
-                      {console.log("NAVBAR ITEM 👉", item)}
-                    <Link
-                      key={item.product.id}
-                      to={`/product/${item.product.id }`}
-                      className="menu-link"
+                      <Link
+                        key={item.product.id}
+                        to={`/product/${item.product.id}`}
+                        className="menu-link"
                       >
-                      {item.product.title}
-                    </Link>
-                      </>
+                        {item.product.title}
+                      </Link>
+                    </>
                   ))}
                 </div>
                 {/* // ---------------- Royal House ---------------- */}
@@ -317,11 +340,11 @@ const Navbar = ({ slug }) => {
 
                 <Link
                   to="/collection/properties"
-                  className="relative cursor-pointer"
+                  className="relative cursor-point  er"
                 >
                   <img
                     src={propertyThumbnail}
-                    className="h-60 w-80 rounded-xl"
+                    className="h-60 w-80 rounded-x  l"
                   />
                   <span className="absolute -bottom-8 left-22 text-black">
                     Properties
@@ -382,7 +405,7 @@ const Navbar = ({ slug }) => {
       {/* ---------------- RIGHT MENU ---------------- */}
       <div className="menu-right flex items-center justify-center text-white gap-2">
         {/* ---------- LANGUAGE DROPDOWN ---------- */}
-        <div className="relative inline-block">
+        <div className="language relative inline-block">
           <button
             onClick={() => setOpenLang(!openLang)}
             className="border border-[#FFE7D9] px-3 py-1 flex items-center rounded-full cursor-pointer text-[14px] text-[#FFE7D9]"
@@ -418,7 +441,7 @@ const Navbar = ({ slug }) => {
         </div>
 
         {/* ---------- CURRENCY DROPDOWN ---------- */}
-        <div className="relative inline-block">
+        <div className="currency relative inline-block">
           <button
             onClick={() => setOpenCurr(!openCurr)}
             className="border border-[#FFE7D9] px-3 py-1 flex items-center rounded-full cursor-pointer text-[14px] text-[#FFE7D9]"
@@ -454,9 +477,11 @@ const Navbar = ({ slug }) => {
         </div>
 
         {/* ---------- USER & CART ---------- */}
-        <div className="relative block user mt-2">
+        <div className=" user relative block user mt-2">
           <button className="cursor-pointer">
-            <LuUserRound className="border border-[#FFE7D9] rounded-full text-[40px] p-2" />
+            <span>
+              <LuUserRound className="user-icons border border-[#FFE7D9] rounded-full text-[40px] p-2" />
+            </span>
           </button>
 
           <div className="drop absolute h-25 w-30 text-[14px] bg-[#FFE7D9] top-10 right-0 rounded-b-xl text-black flex flex-col items-start justify-center gap-1 list-none px-2">
@@ -466,18 +491,281 @@ const Navbar = ({ slug }) => {
           </div>
         </div>
 
-        <button
-          onClick={() => setIsCartOpen(true)}
-          className="border border-[#FFE7D9] px-3 py-1 flex items-center rounded-full cursor-pointer text-[14px] text-[#FFE7D9]"
+        <div className="cart h-10 w-40 relative border rounded-full flex items-center">
+          <button onClick={() => setIsCartOpen(true)}>
+            <p className="absolute right-0 bg-white text-black px-2 -top-2 rounded-full text-[10px] font-bold">
+              {cart.length}
+            </p>
+            <h4 className="absolute top-2 text-[16px] px-2">
+              My cart: Rs.0.00
+            </h4>
+            <span className="text-2xl m-1">
+              <BsCart2 className="cart-icons absolute right-2 text-xl top-2" />
+            </span>
+          </button>
+        </div>
+
+        <div
+          onClick={() => setopenHamburg(true)}
+          className="Hamburg-menu h-8 w-8 relative border rounded-full flex items-center justify-center bg-[#FFE7D9] cursor-pointer md:hidden"
         >
-          <p className="absolute right-24 bg-white text-black px-2 top-8 rounded-full text-[10px] font-bold">
-            {cart.length}
-          </p>
-          My cart: Rs.0.00
-          <span className="text-2xl m-1">
-            <BsCart2 />
+          <span className="text-black text-xl">
+            <RxHamburgerMenu />
           </span>
-        </button>
+        </div>
+
+        {openHamburg && (
+          <>
+            {/* Overlay */}
+            <div
+              onClick={() => setopenHamburg(false)}
+              className="fixed inset-0 bg-black/40 z-[9998] block md:hidden"
+            />
+
+            {/* Drawer */}
+            <div className="fixed top-0 right-0 h-full w-full bg-white z-[9999] flex flex-col text-[#172229] overflow-y-auto">
+              {/* ---------- HEADER ---------- */}
+              <div className="h-14 flex items-center px-4 border-b bg-[#172229] text-white">
+                <button
+                  onClick={() => setopenHamburg(false)}
+                  className="text-2xl"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* ---------- LANGUAGE + CURRENCY ---------- */}
+              <div className="flex gap-3 p-4 border-b">
+                {/* Language */}
+                <div className="relative flex-1">
+                  <button
+                    onClick={() => {
+                      setMobileLangOpen(!mobileLangOpen);
+                      setMobileCurrOpen(false);
+                    }}
+                    className="w-full shadow-xl rounded-md px-3 py-3  flex items-center justify-between bg-white"
+                  >
+                    <span className="flex items-center gap-2">
+                      <ReactCountryFlag svg countryCode={selectedLang.code} />
+                      {selectedLang.label}
+                    </span>
+                    <FaAngleDown />
+                  </button>
+
+                  {mobileLangOpen && (
+                    <div className="absolute left-0 top-[110%] w-full bg-white shadow-xl rounded-xl z-50">
+                      {languages.map((lang) => (
+                        <div
+                          key={lang.code}
+                          onClick={() => {
+                            handleLangSelect(lang);
+                            setMobileLangOpen(false);
+                          }}
+                          className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-100"
+                        >
+                          <ReactCountryFlag svg countryCode={lang.code} />
+                          {lang.label}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Currency */}
+                <div className="relative flex-1">
+                  <button
+                    onClick={() => {
+                      setMobileCurrOpen(!mobileCurrOpen);
+                      setMobileLangOpen(false);
+                    }}
+                    className="w-full shadow-xl rounded-md px-3 py-3 flex items-center justify-between bg-white"
+                  >
+                    <span className="flex items-center gap-2">
+                      <ReactCountryFlag svg countryCode={selectedCurr.code} />
+                      {selectedCurr.label}
+                    </span>
+                    <FaAngleDown />
+                  </button>
+
+                  {mobileCurrOpen && (
+                    <div className="absolute right-0 top-[110%] w-full bg-white shadow-xl rounded-xl z-50">
+                      {Currancy.map((curr) => (
+                        <div
+                          key={curr.code}
+                          onClick={() => {
+                            handleCurrSelect(curr);
+                            setMobileCurrOpen(false);
+                          }}
+                          className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-100"
+                        >
+                          <ReactCountryFlag svg countryCode={curr.code} />
+                          {curr.label}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+              {/* ---------- MENU LIST ---------- */}
+              <div className="menu-list p-5 list-none text-xl flex flex-col items-start gap-2 font-normal tracking-wide">
+                <li className="w-full">
+                  {/* Shop All */}
+                  <button
+                    onClick={() => setisOpneShopall(!isOpneShopall)}
+                    className="w-full flex justify-between items-center text-xl"
+                  >
+                    Shop All
+                    <FaAngleDown
+                      className={`transition-transform ${
+                        isOpneShopall ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Shop All Drawer */}
+                  {isOpneShopall && (
+                    <div className="mt-2 ml-4 flex flex-col gap-3">
+                      {/* ================= FARM VILLA ================= */}
+                      <div className="w-full">
+                        <button
+                          onClick={() => setshowFarmvilla(!showFarmvilla)}
+                          className="w-full flex justify-between items-center text-xl"
+                        >
+                          Farm Villa
+                          <FaAngleDown
+                            className={`transition-transform ${
+                              showFarmvilla ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        {showFarmvilla && (
+                          <div className="mt-2 ml-4 text-sm flex flex-col gap-1">
+                            {FarmVilla.map((item) => (
+                              <Link
+                                key={item.product.id}
+                                to={`/product/${item.product.id}`}
+                              >
+                                {item.product.title}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* ================= LUXURY PROPERTIES ================= */}
+                      <div className="w-full">
+                        <button
+                          onClick={() => setShowLuxury(!showLuxury)}
+                          className="w-full flex justify-between items-center text-xl"
+                        >
+                          Luxury Properties
+                          <FaAngleDown
+                            className={`transition-transform ${
+                              showLuxury ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        {showLuxury && (
+                          <div className="mt-2 ml-4 text-sm flex flex-col gap-1">
+                            {Properties.map((item) => (
+                              <Link
+                                key={item.product.id}
+                                to={`/product/${item.product.id}`}
+                              >
+                                {item.product.title}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* ================= ROYAL HOUSE ================= */}
+                      <div className="w-full">
+                        <button
+                          onClick={() => setShowRoyal(!showRoyal)}
+                          className="w-full flex justify-between items-center text-xl"
+                        >
+                          Royal House
+                          <FaAngleDown
+                            className={`transition-transform ${
+                              showRoyal ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        {showRoyal && (
+                          <div className="mt-2 ml-4 text-sm flex flex-col gap-1">
+                            {RoyalHouse.map((item) => (
+                              <Link
+                                key={item.product.id}
+                                to={`/product/${item.product.id}`}
+                              >
+                                {item.product.title}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </li>
+
+                <li className="w-full">
+                  {/* Blog button */}
+                  <button
+                    onClick={() => setisOpen(!isOpen)}
+                    className="w-full flex justify-between items-center text-xl"
+                  >
+                    Blog
+                    <FaAngleDown
+                      className={`transition-transform ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Drawer under Blog */}
+                  {isOpen && (
+                    <div className="mt-2 ml-2 text-xl">
+                      <Link
+                        to="/pages/blog"
+                        onClick={() => setopenHamburg(false)}
+                      >
+                        Blog Page
+                      </Link>
+                    </div>
+                  )}
+                </li>
+
+                <Link
+                  to="/pages/all-collections"
+                  onClick={() => setopenHamburg(false)}
+                  className="flex items-center"
+                >
+                  All Collection
+                </Link>
+
+                <Link
+                  to="/pages/Aboutus"
+                  onClick={() => setopenHamburg(false)}
+                  className="flex items-center"
+                >
+                  About Us
+                </Link>
+
+                <Link
+                  to="/pages/Contactus"
+                  onClick={() => setopenHamburg(false)}
+                  className="flex items-center"
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </div>
+          </>
+        )}
 
         {/* ---------- CART DRAWER ---------- */}
         {isCartOpen && (

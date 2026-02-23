@@ -87,8 +87,8 @@ const ProductCard = ({ item }) => {
     }
 
     // Limit to 4 items max
-    if (compare.length >= 4) {
-      alert("You can compare maximum 4 products at a time!");
+    if (compare.length >= 5) {
+      alert("You can compare maximum 5 products at a time!");
       return;
     }
 

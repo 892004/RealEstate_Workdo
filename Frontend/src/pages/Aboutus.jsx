@@ -5,6 +5,7 @@ import About1 from '../public/Images/About-1.webp'
 import About2 from '../public/Images/About-2.webp'
 import Footer from '../components/Footer/Footer'
 import { FaTruck, FaTags, FaHeadset } from 'react-icons/fa'
+import '../components/Aboutus/Aboutus.css'
 
 const Aboutus = () => {
   return (
@@ -22,13 +23,13 @@ const Aboutus = () => {
         {/* Be clear and concise section */}
         <div className="clear-concise bg-white py-20 px-30">
             <h2 className='text-4xl font-bold text-black mb-12'>Be clear and concise</h2>
-            <div className="flex gap-12">
-                <div className="flex-1">
+            <div className="paragraph flex gap-12">
+                <div className="para-1 flex-1">
                     <p className='text-gray-700 leading-relaxed'>
                         At Modern Real Estate, we are dedicated to redefining the real estate experience by combining cutting-edge technology, exceptional service, and a forward-thinking approach. Our team of seasoned professionals is passionate about helping clients find their dream homes or investment properties.
                     </p>
                 </div>
-                <div className="flex-1">
+                <div className="para-2 flex-1">
                     <p className='text-gray-700 leading-relaxed'>
                         With years of industry experience and a deep understanding of the modern real estate landscape, our team of experts is well-equipped to guide you through the complexities of buying, selling, or investing in properties. From market analysis and property valuation to negotiating deals and navigating legal processes.
                     </p>
@@ -48,7 +49,7 @@ const Aboutus = () => {
         {/* Make it inviting and engaging section */}
         <div className="inviting-engaging bg-white py-10 px-30">
             <h2 className='text-3xl font-bold text-[#172229]'>Make it inviting and engaging</h2>
-            <div className="flex gap-12 items-center ">
+            <div className="paragraph-2 flex gap-12 items-center ">
                 <div className="flex-1">
                     <p className='text-gray-700 leading-relaxed mb-6'>
                         We understand that real estate decisions are among the most significant financial and emotional investments you'll make. That's why we're committed to providing personalized support, local market expertise, and a client-centric approach that puts your needs first.
@@ -57,19 +58,19 @@ const Aboutus = () => {
                         Whether you're a first-time homebuyer, seasoned investor, or looking to sell your property, our comprehensive suite of services is designed to make your real estate journey smooth, successful, and rewarding.
                     </p>
                 </div>
-                <div className="flex-1">
+                <div className="img flex-1">
                     <img src={About1} alt="Modern House" className='w-full h-120  object-cover rounded-lg shadow-lg -translate-y-20 ' />
                 </div>
             </div>
         </div>
 
         {/* Keep it short and sweet section */}
-        <div className="short-sweet bg-white py-20 px-30">
-            <div className="flex gap-12 items-center">
-                <div className="flex-1">
+        <div className="short-sweet bg-white py-20 px-6">
+            <div className=" flex flex-col md:flex-row gap-12 items-center">
+                <div className="img flex-1">
                     <img src={About2} alt="Modern House with Pool" className='w-full h-96 object-cover rounded-lg shadow-lg' />
                 </div>
-                <div className="flex-1">
+                <div className="paragraph-3 flex-1">
                     <h2 className='text-4xl font-bold text-black mb-8'>Keep it short and sweet</h2>
                     <p className='text-gray-700 leading-relaxed mb-6'>
                         Buying or selling a home should be an exciting journey, not a stressful ordeal. We've streamlined the process to make it as efficient and enjoyable as possible, leveraging technology and market insights to deliver exceptional results.
@@ -85,10 +86,10 @@ const Aboutus = () => {
         <div className="services bg-white py-20 px-30 flex items-center justify-center flex-col">
             <h2 className='text-4xl font-bold text-black mb-8'>About our services</h2>
             <p className='text-gray-700 leading-relaxed mb-12 max-w-4xl text-center '>
-              Our mission is to empower individuals with knowledge and facilitate meaningful connections through our platform. We <br/>understand the importance of reliable and up-to-date information in today's fast-paced world.
+              Our mission is to empower individuals with knowledge and facilitate meaningful connections through our platform. We understand the importance of reliable and up-to-date information in today's fast-paced world.
             </p>
             
-            <div className="grid grid-cols-3 gap-8">
+            <div className="cards grid grid-cols-3 gap-8">
                 <div className="text-center p-8 bg-gray-50 rounded-lg">
                     <div className="flex justify-center mb-4">
                         <FaTruck className='text-4xl text-blue-600' />
@@ -121,9 +122,8 @@ const Aboutus = () => {
             </div>
         </div>
 
+<Footer />
     </section>
-    
-    <Footer />
     </>
   )
 }

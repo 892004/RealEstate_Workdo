@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
+import { IoIosArrowRoundBack } from "react-icons/io";
 import api from "../Apis/Api";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import '../components/login/login.css'
 
 const login = () => {
   const navigate = useNavigate();
@@ -75,6 +77,14 @@ const login = () => {
 
   return (
     <section className="login flex flex-col items-center justify-center p-20">
+      <Link to="/collection/best-seller">
+        <p className="flex items-center justify-center text-[14px] font-medium mb-2 mr-5">
+          <span className="text-2xl border p-1 rounded-full m-1">
+            <IoIosArrowRoundBack />
+          </span>{" "}
+          Back to Shop
+        </p>
+      </Link>
       <h1 className="text-4xl font-semibold mb-5 ">Log In</h1>
 
       {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
@@ -125,7 +135,10 @@ const login = () => {
         <hr className="my-10" />
 
         <div className="access flex items-center justify-center">
-          <Link to ="/admin/forgot-pass" className="absolute right-50 text-[14px] underline text-red-600 cursor-pointer">
+          <Link
+            to="/admin/forgot-pass"
+            className="absolute right-50 text-[14px] underline text-red-600 cursor-pointer"
+          >
             Forgot Password?
           </Link>
           <button
@@ -138,7 +151,7 @@ const login = () => {
             </span>
           </button>
         </div>
-        <hr className="mt-12"/>
+        <hr className="mt-12" />
       </form>
       <div className="register flex flex-row items-center justify-center gap-5 -translate-y-20  ">
         <p className="text-[14px] ">If you dont have account</p>

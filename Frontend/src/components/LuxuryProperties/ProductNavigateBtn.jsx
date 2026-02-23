@@ -7,7 +7,7 @@ const tabs = [
 
 const ProductNavigateBtn = ({ active, setCollection }) => {
   return (
-    <section className="px-15 py-5 flex gap-5 -translate-y-15">
+    <section className="navigate-btn px-15 py-5 flex flex-wrap  gap-5 -translate-y-15">
       {tabs.map(tab => (
         <button
           key={tab.value}

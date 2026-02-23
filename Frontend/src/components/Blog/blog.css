@@ -1,0 +1,55 @@
+@media (max-width: 768px) {
+  .blog {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .blog .heading {
+    height: 35vh;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .blog .heading p {
+    font-size: 16px;
+    display: flex;
+    width: 100%;
+  }
+
+  .blog .home-blog{
+    padding: 10px;
+    height: auto;
+    width: 100%;
+    
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .blog .slider {
+    overflow: visible;
+  }
+
+  .blog .slider .animation {
+    flex-direction: column;   /* ✅ STACK */
+    transform: none !important;
+    gap: 20px;
+  }
+
+  .blog .slider button {
+    display: none !important;
+  }
+
+  .blog .card {
+    width: 100% !important;  /* ✅ FULL WIDTH */
+    max-width: 350px;
+    margin: auto;
+  }
+}
+

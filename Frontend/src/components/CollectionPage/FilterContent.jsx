@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
-const FilterContent = ({ filter, setFilters }) => {
-  const [changegbtn, setchangegbtn] = useState({
+const FilterContent = ({ filters, setFilters }) => {
+  const [openSection, setOpenSection] = useState({
     availability: false,
     size: false,
     producttype: false,
@@ -15,290 +15,249 @@ const FilterContent = ({ filter, setFilters }) => {
   const [selectedProductTypes, setSelectedProductTypes] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
 
+  // Toggle section open/close
   const toggle = (key) => {
-    setchangegbtn((prev) => ({
+    setOpenSection((prev) => ({
       ...prev,
       [key]: !prev[key],
     }));
   };
 
-  // Handle checkbox changes
-  const handleAvailabilityChange = (value) => {
-    const updated = selectedAvailability.includes(value)
-      ? selectedAvailability.filter(item => item !== value)
-      : [...selectedAvailability, value];
-    
-    setSelectedAvailability(updated);
-    setFilters(prev => ({ ...prev, availability: updated }));
+  // Checkbox Handlers
+  const updateFilter = (key, value, selected, setSelected) => {
+    const updated = selected.includes(value)
+      ? selected.filter((item) => item !== value)
+      : [...selected, value];
+
+    setSelected(updated);
+    setFilters((prev) => ({ ...prev, [key]: updated }));
   };
 
-  const handleSizeChange = (value) => {
-    const updated = selectedSizes.includes(value)
-      ? selectedSizes.filter(item => item !== value)
-      : [...selectedSizes, value];
-    
-    setSelectedSizes(updated);
-    setFilters(prev => ({ ...prev, sizes: updated }));
+  // Reset Handler
+  const resetFilter = (key, setSelected) => {
+    setSelected([]);
+    setFilters((prev) => ({ ...prev, [key]: [] }));
   };
 
-  const handleProductTypeChange = (value) => {
-    const updated = selectedProductTypes.includes(value)
-      ? selectedProductTypes.filter(item => item !== value)
-      : [...selectedProductTypes, value];
-    
-    setSelectedProductTypes(updated);
-    setFilters(prev => ({ ...prev, productTypes: updated }));
-  };
-
-  const handleBrandChange = (value) => {
-    const updated = selectedBrands.includes(value)
-      ? selectedBrands.filter(item => item !== value)
-      : [...selectedBrands, value];
-    
-    setSelectedBrands(updated);
-    setFilters(prev => ({ ...prev, brands: updated }));
-  };
-
-  // Reset functions
-  const resetAvailability = () => {
-    setSelectedAvailability([]);
-    setFilters(prev => ({ ...prev, availability: [] }));
-  };
-
-  const resetSizes = () => {
-    setSelectedSizes([]);
-    setFilters(prev => ({ ...prev, sizes: [] }));
-  };
-
-  const resetProductTypes = () => {
-    setSelectedProductTypes([]);
-    setFilters(prev => ({ ...prev, productTypes: [] }));
-  };
-
-  const resetBrands = () => {
-    setSelectedBrands([]);
-    setFilters(prev => ({ ...prev, brands: [] }));
-  };
   return (
-    <section className="filter-content py-10 px-3 flex flex-col gap-5">
-      {/* Availability */}
-      <h1 className="text-[16px] uppercase text-[#172229] font-medium flex items-center relative cursor-pointer">
-        Availability
-        <span
-          className="text-[14px] absolute -right-20 "
+    <section className="filter-content text-black py-6 px-4 flex flex-col gap-6">
+
+      {/* ================= Availability ================= */}
+      <div>
+        {/* Heading */}
+        <div
+          className="flex justify-between items-center cursor-pointer"
           onClick={() => toggle("availability")}
         >
-          {changegbtn.availability ? <FaMinus /> : <FaPlus />}
-        </span>
-      </h1>
+          <h1 className="text-[16px] uppercase font-semibold text-[#172229]">
+            Availability
+          </h1>
 
-      {changegbtn.availability &&(
-    <div className="availability-dropdown relative -translate-y-3">
-        <div className="count flex items-center justify-between">
-            <h1 className="text-[14px] font-medium">{selectedAvailability.length} selected</h1>
-            <button 
-              onClick={resetAvailability}
-              className="px-2 py-1 bg-gray-300 rounded-full font-semibold text-[12px] absolute -right-23 cursor-pointer"
-            >
-              Reset
-            </button>
+          <span>
+            {openSection.availability ? <FaMinus /> : <FaPlus />}
+          </span>
         </div>
-        <label className="text-[15px] font-medium flex items-center px-2 mt-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedAvailability.includes("in-stock")}
-            onChange={() => handleAvailabilityChange("in-stock")}
-          /> In stock
-          <span className="absolute -right-20">(8)</span>
-        </label>
 
-         <label className="text-[15px] font-medium flex items-center px-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedAvailability.includes("out-stock")}
-            onChange={() => handleAvailabilityChange("out-stock")}
-          /> Out of stock
-          <span className="absolute -right-20">(8)</span>
-        </label>
-    </div>  
-      )}
-      <hr className="w-87 opacity-10" />
+        {/* Dropdown */}
+        {openSection.availability && (
+          <div className="mt-3 flex flex-col gap-2">
 
+            {/* Reset Row */}
+            <div className="flex justify-between items-center text-sm">
+              <p>{selectedAvailability.length} selected</p>
 
-      {/* Size */}
-      <h1 className="text-[16px] uppercase text-[#172229] font-medium flex items-center relative cursor-pointer">
-        Size
-        <span
-          className="text-[14px] absolute -right-20"
+              <button
+                onClick={() => resetFilter("availability", setSelectedAvailability)}
+                className="px-2 py-1 bg-gray-200 rounded text-xs"
+              >
+                Reset
+              </button>
+            </div>
+
+            {/* Checkbox */}
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={selectedAvailability.includes("in-stock")}
+                onChange={() =>
+                  updateFilter(
+                    "availability",
+                    "in-stock",
+                    selectedAvailability,
+                    setSelectedAvailability
+                  )
+                }
+              />
+              In Stock <span className="ml-auto">(8)</span>
+            </label>
+
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={selectedAvailability.includes("out-stock")}
+                onChange={() =>
+                  updateFilter(
+                    "availability",
+                    "out-stock",
+                    selectedAvailability,
+                    setSelectedAvailability
+                  )
+                }
+              />
+              Out of Stock <span className="ml-auto">(8)</span>
+            </label>
+          </div>
+        )}
+      </div>
+
+      <hr />
+
+      {/* ================= Size ================= */}
+      <div>
+        <div
+          className="flex justify-between items-center cursor-pointer"
           onClick={() => toggle("size")}
         >
-          {changegbtn.size ? <FaMinus /> : <FaPlus />}
-        </span>
-      </h1>
-      {changegbtn.size &&(
-         <div className="size-dropdown relative -translate-y-3">
-        <div className="count flex items-center justify-between">
-            <h1 className="text-[14px] font-medium">{selectedSizes.length} selected</h1>
-            <button 
-              onClick={resetSizes}
-              className="px-2 py-1 bg-gray-300 rounded-full font-semibold text-[12px] absolute -right-23 cursor-pointer"
-            >
-              Reset
-            </button>
+          <h1 className="text-[16px] uppercase font-semibold text-[#172229]">
+            Size
+          </h1>
+
+          <span>{openSection.size ? <FaMinus /> : <FaPlus />}</span>
         </div>
-        <label className="text-[15px] font-medium flex items-center px-2 mt-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedSizes.includes("1100")}
-            onChange={() => handleSizeChange("1100")}
-          /> 1100 sq ft
-          <span className="absolute -right-20">(8)</span>
-        </label>
 
-        <label className="text-[15px] font-medium flex items-center px-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedSizes.includes("1200")}
-            onChange={() => handleSizeChange("1200")}
-          /> 1200 sq ft
-          <span className="absolute -right-20">(8)</span>
-        </label>
+        {openSection.size && (
+          <div className="mt-3 flex flex-col gap-2">
 
-        <label className="text-[15px] font-medium flex items-center px-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedSizes.includes("1300")}
-            onChange={() => handleSizeChange("1300")}
-          /> 1300 sq ft
-          <span className="absolute -right-20">(8)</span>
-        </label>
+            <div className="flex justify-between items-center text-sm">
+              <p>{selectedSizes.length} selected</p>
 
-        <label className="text-[15px] font-medium flex items-center px-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedSizes.includes("1400")}
-            onChange={() => handleSizeChange("1400")}
-          /> 1400 sq ft
-          <span className="absolute -right-20">(8)</span>
-        </label>
+              <button
+                onClick={() => resetFilter("sizes", setSelectedSizes)}
+                className="px-2 py-1 bg-gray-200 rounded text-xs"
+              >
+                Reset
+              </button>
+            </div>
 
-        <label className="text-[15px] font-medium flex items-center px-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedSizes.includes("1500")}
-            onChange={() => handleSizeChange("1500")}
-          /> 1500 sq ft
-          <span className="absolute -right-20">(8)</span>
-        </label>
+            {["1100", "1200", "1300", "1400","1500","1600" ,"1700" ,"1800" ].map((size) => (
+              <label key={size} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={selectedSizes.includes(size)}
+                  onChange={() =>
+                    updateFilter("sizes", size, selectedSizes, setSelectedSizes)
+                  }
+                />
+                {size} sq ft <span className="ml-auto">(8)</span>
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
 
-        <label className="text-[15px] font-medium flex items-center px-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedSizes.includes("1600")}
-            onChange={() => handleSizeChange("1600")}
-          /> 1600 sq ft
-          <span className="absolute -right-20">(8)</span>
-        </label>
+      <hr />
 
-        <label className="text-[15px] font-medium flex items-center px-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedSizes.includes("1700")}
-            onChange={() => handleSizeChange("1700")}
-          /> 1700 sq ft
-          <span className="absolute -right-20">(8)</span>
-        </label>
-
-        <label className="text-[15px] font-medium flex items-center px-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedSizes.includes("1800")}
-            onChange={() => handleSizeChange("1800")}
-          /> 1800 sq ft
-          <span className="absolute -right-20">(8)</span>
-        </label>
-    </div> 
-  )}
-      <hr className="w-87 opacity-10" />
-
-      {/* ProductType */}
-      <h1 className="text-[16px] uppercase text-[#172229] font-medium flex items-center relative cursor-pointer">
-        Product type
-        <span
-          className="text-[14px] absolute -right-20"
+      {/* ================= Product Type ================= */}
+      <div>
+        <div
+          className="flex justify-between items-center cursor-pointer"
           onClick={() => toggle("producttype")}
         >
-          {changegbtn.producttype ? <FaMinus /> : <FaPlus />}
-        </span>
-      </h1>
-       {changegbtn.producttype &&(
-    <div className="producttype-dropdown relative -translate-y-2">
-        <div className="count flex items-center justify-between">
-            <h1 className="text-[14px] font-medium">{selectedProductTypes.length} selected</h1>
-            <button 
-              onClick={resetProductTypes}
-              className="px-2 py-1 bg-gray-300 rounded-full font-semibold text-[12px] absolute -right-23 cursor-pointer"
-            >
-              Reset
-            </button>
+          <h1 className="text-[16px] uppercase font-semibold text-[#172229]">
+            Product Type
+          </h1>
+
+          <span>
+            {openSection.producttype ? <FaMinus /> : <FaPlus />}
+          </span>
         </div>
-        <label className="text-[15px] font-medium flex items-center px-2 mt-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedProductTypes.includes("home")}
-            onChange={() => handleProductTypeChange("home")}
-          /> Home
-          <span className="absolute -right-20">(8)</span>
-        </label>
-    </div>  
-      )}
 
+        {openSection.producttype && (
+          <div className="mt-3 flex flex-col gap-2">
 
-      <hr className="w-87 opacity-10" />
+            <div className="flex justify-between items-center text-sm">
+              <p>{selectedProductTypes.length} selected</p>
 
-      {/* Brand */}
-      <h1 className="text-[16px] uppercase text-[#172229] font-medium flex items-center relative cursor-pointer">
-        Brand
-        <span
-          className="text-[14px] absolute -right-20"
+              <button
+                onClick={() =>
+                  resetFilter("productTypes", setSelectedProductTypes)
+                }
+                className="px-2 py-1 bg-gray-200 rounded text-xs"
+              >
+                Reset
+              </button>
+            </div>
+
+            {["Home"].map((type) => (
+              <label key={type} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={selectedProductTypes.includes(type)}
+                  onChange={() =>
+                    updateFilter(
+                      "productTypes",
+                      type,
+                      selectedProductTypes,
+                      setSelectedProductTypes
+                    )
+                  }
+                />
+                {type} <span className="ml-auto">(8)</span>
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <hr />
+
+      {/* ================= Brand ================= */}
+      <div>
+        <div
+          className="flex justify-between items-center cursor-pointer"
           onClick={() => toggle("brand")}
         >
-          {changegbtn.brand ? <FaMinus /> : <FaPlus />}
-        </span>
-      </h1>
-       {changegbtn.brand &&(
-    <div className="brand-dropdown relative -translate-y-3">
-        <div className="count flex items-center justify-between">
-            <h1 className="text-[14px] font-medium">{selectedBrands.length} selected</h1>
-            <button 
-              onClick={resetBrands}
-              className="px-2 py-1 bg-gray-300 rounded-full font-semibold text-[12px] absolute -right-23 cursor-pointer"
-            >
-              Reset
-            </button>
+          <h1 className="text-[16px] uppercase font-semibold text-[#172229]">
+            Brand
+          </h1>
+
+          <span>{openSection.brand ? <FaMinus /> : <FaPlus />}</span>
         </div>
-        <label className="text-[15px] font-medium flex items-center px-2 mt-2 gap-2">
-          <input 
-            type="checkbox" 
-            className="scale-150"
-            checked={selectedBrands.includes("real-estate")}
-            onChange={() => handleBrandChange("real-estate")}
-          /> Real Estate
-          <span className="absolute -right-20">(8)</span>
-        </label>
-    </div>  
-      )}
+
+        {openSection.brand && (
+          <div className="mt-3 flex flex-col gap-2">
+
+            <div className="flex justify-between items-center text-sm">
+              <p>{selectedBrands.length} selected</p>
+
+              <button
+                onClick={() => resetFilter("brands", setSelectedBrands)}
+                className="px-2 py-1 bg-gray-200 rounded text-xs"
+              >
+                Reset
+              </button>
+            </div>
+
+            {["Real Estate"].map((brand) => (
+              <label key={brand} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={selectedBrands.includes(brand)}
+                  onChange={() =>
+                    updateFilter(
+                      "brands",
+                      brand,
+                      selectedBrands,
+                      setSelectedBrands
+                    )
+                  }
+                />
+                {brand} <span className="ml-auto">(8)</span>
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 };

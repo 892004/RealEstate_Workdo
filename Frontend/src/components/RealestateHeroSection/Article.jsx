@@ -5,6 +5,7 @@ import blog2 from '../../public/Images/Blog2.webp'
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { HiMiniArrowLongRight } from "react-icons/hi2";
 import { FaUserLarge } from "react-icons/fa6";
+import '../Artical/artical.css'
 
 
 
@@ -60,33 +61,30 @@ localStorage.setItem("comments", JSON.stringify(updatedComments));
 
   return (
     <section className="artical relative px-30 py-20   ">
-
-        
-      
      <div className="about-user list-none flex gap-10 text-[#172229]    ">
         <li className='font-bold text-[18px]'><i>Work DO</i></li>
         <li ><span className='font-bold text-[18px]'>Category:</span> realestate</li>
         <li><span  className='font-bold text-[18px]'>Date:</span>May 25,2023</li>
-        <li className='flex items-center text-2xl '><span><TbShare2 /></span></li>
+        <li className='flex items-center text-2xl '><span className='share-icon'><TbShare2 /></span></li>
      </div>
 
-<p className='py-8 text-[33px] text-base/10 font-bold text-[#172229]'>
+<h1 className='py-8 text-[33px] text-base/10 font-bold text-[#172229]'>
   {props.data.title}
-</p>
+</h1>
 
     
     <div className="article-content flex flex-row h-screen w-full ">
-        <div className="left-section h-full w-[60%] bg-green-500">
-            <img src={props.data.img} alt="" className='h-full w-full object-cover  text-[#17222A]' />
+        <div className="left-section h-full w-[60%]  gap-2">
+            <img src={props.data.img} alt="" className='h-[70vh] w-full object-cover  text-[#17222A]' />
             <p className='leading-5 text-[15px]'>where we challenge conventional notions of luxury living and explore the unique joys of prioritizing points over penthouses. In a world where material possessions often take center stage, we invite you to embark on a journey that focuses on the intangible elements that truly make a house a home. At Dream House Diaries, we believe that a home is not defined solely by its grandeur or opulence but by the experiences, memories, and connections it fosters. Instead of pursuing extravagant penthouses, we encourage you to consider the following points when crafting your dream house</p><br/>
 
             <p className='py-2 text-[20px] tracking-tight  text-[#17222A]'>Rather than aiming for the highest floor in a luxury high-rise, we prioritize finding a home in a location that aligns with your lifestyle and values. Whether it's a peaceful neighborhood, a close-knit community, or proximity to nature, choosing the right location ensures a fulfilling and enriching living experience. While penthouses may offer spacious layouts and extravagant features, we emphasize the importance of practical and functional design. Thoughtful floor plans, efficient use of space, and intelligent storage solutions create a home that enhances your daily life and accommodates your unique needs.</p><br/>
 
             <span className='text-[16px]  text-[#17222A]'>Whether it's incorporating your favorite colors, displaying cherished artwork, or creating cozy nooks, these elements contribute to a sense of identity and warmth in your home.</span>
 
-            <p className='py-20 flex items-start text-[18px] font-medium -translate-x-5  text-[#17222A]'><span className='text-6xl px-5'><RiDoubleQuotesL /></span>Implementing energy-efficient systems, utilizing renewable materials, and integrating sustainable practices into your home reduce your environmental impact and create a healthier, more conscious living space.</p>
+            <p className='quotes-para py-20 flex items-start text-[18px] font-medium -translate-x-5  text-[#17222A]'><span className='text-6xl px-5'><RiDoubleQuotesL /></span>Implementing energy-efficient systems, utilizing renewable materials, and integrating sustainable practices into your home reduce your environmental impact and create a healthier, more conscious living space.</p>
 
-            <p className='font-bold -my-5 text-[#17222A]'>Tags:<span className='font-normal'>News</span></p>
+            <p className='tags font-bold -my-5 text-[#17222A]'>Tags:<span className='font-normal'>News</span></p>
         </div>
 
 
@@ -186,9 +184,6 @@ localStorage.setItem("comments", JSON.stringify(updatedComments));
         </div>
     </div>
     </section>
-
-
-    
   )
 }
 

@@ -23,6 +23,7 @@ const HomePage = (props) => {
         <IdealPlace />
         <HomeBlog />
         <Footer />
+
     </section>
   )
 }

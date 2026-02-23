@@ -3,6 +3,7 @@ import { HiArrowLongLeft } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import '../components/wishlist/wishlist.css'
 
 const Wishlist = () => {
   // 1️⃣ Wishlist state
@@ -38,7 +39,7 @@ const Wishlist = () => {
   };
 
   return (
-    <section className="wishlist h-screen w-full">
+    <section className="wishlist min-h-screen w-full">
       <div className="top-content h-[40vh] w-full bg-[#172229] flex flex-col items-start justify-start text-white px-20 py-15 gap-2">
         <Link to="/">
           <h3 className="flex items-center justify-center text-sm font-semibold">
@@ -85,7 +86,7 @@ const Wishlist = () => {
           return (
             <div
               key={index}
-              className="p-4 relative flex flex-row items-center justify-evenly border-b"
+              className="items p-4 relative flex flex-row items-center justify-evenly border-b"
             >
               <img src={item.image} alt="product-img h-40 w-40 " />
               <div className="details flex flex-col items-center justify-center text-center">
@@ -146,15 +147,21 @@ const Wishlist = () => {
       
                 {/* 🧹 CLEAR ALL BUTTON */}
         {wishlist.length > 0 && (
-          <button
-            onClick={clearAll}
-            className="bg-[#172229] text-[#F7E1D5] text-[14px] font-semibold px-10 py-2 mt-2 rounded-full flex items-center justify-center absolute left-[50%] cursor-pointer "
-          >
-            Clear All
-          </button>
+          <div className="btn">
+
+         <button
+  onClick={clearAll}
+  className="bg-[#172229] text-[#F7E1D5] 
+  text-[14px] font-semibold px-10 py-2 mt-6 
+  rounded-full flex items-center justify-center mx-auto"
+>
+  Clear All
+</button>
+  </div>
+
         )}
     </section>
   );
 };
 
-export default Wishlist;
+export default Wishlist;  

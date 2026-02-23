@@ -3,10 +3,11 @@ import HomeBlog from "../components/HomeBlogSection/HomeBlog";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import Footer from "../components/Footer/Footer";
+import '../components/Blog/blog.css'
 
 const Blog = () => {
   return (
-    <section className="blog h-screen w-full">
+    <section className="blog min-h-screen h-auto w-full">
 
        <div className="heading h-[40vh] w-full bg-[#172229] px-30 flex flex-col items-start py-10 justify-start gap-5 text-white">
         <Link to="/">
@@ -33,4 +34,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Blog; 

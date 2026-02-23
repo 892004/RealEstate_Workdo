@@ -8,6 +8,11 @@ const CARD_WIDTH = 340;
 const GAP = 24;
 const VISIBLE = 2;
 
+
+const MOBILE_CARD_WIDTH = 200;
+const MOBILE_GAP = 18;
+const MOBILE_VISIBLE = 1;
+
 const Cards = () => {
   const [products, setProducts] = useState([]);
   const [sliderItems, setSliderItems] = useState([]);
@@ -61,17 +66,16 @@ const Cards = () => {
 
   // ✅ RIGHT CARD IS ALWAYS ACTIVE
   const activeIndex = index + 1;
+  
 
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ width: `${CARD_WIDTH * 2 + GAP}px` }}
-    >
+ <section className="Card relative overflow-hidden w-full max-w-full">
+
       {/* TRACK */}
       <div
         ref={trackRef}
         onTransitionEnd={handleTransitionEnd}
-        className={`flex gap-6 ${
+        className={`track flex gap-12 ${
           animate ? "transition-transform duration-500 ease-in-out" : ""
         }`}
         style={{
@@ -87,7 +91,7 @@ const Cards = () => {
           return (
             <div
               key={`${product.id}-${i}`}
-              className={`min-w-[340px] h-[70vh] rounded-2xl border transition-all duration-300
+              className={`card-content min-w-[320px] h-[75vh] rounded-2xl border transition-all duration-300
                 ${
                   isActive
                     ? "bg-[#172229] text-white"
@@ -170,7 +174,7 @@ const Cards = () => {
                     window.dispatchEvent(new Event("cartUpdated"));
                     window.dispatchEvent(new Event("cartOpen"));
                   }}
-                  className={`mt-4 w-30 py-2 rounded-full ml-3 bg-[#172229] text-white  ${
+                  className={`mt-4 w-30 py-2 rounded-full ml-3 bg-[#172229] text-white ${
                   isActive
                     ? "bg-[#172229] text-white"
                     : "bg-[#FFE9DA] text-[#172229]"

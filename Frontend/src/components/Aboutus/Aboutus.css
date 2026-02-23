@@ -1,0 +1,130 @@
+@media (max-width:768px){
+   .About-us{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   }  
+   .About-us .heading{
+    height: 35vh;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding: 20px;
+    gap: 20px;
+
+   }
+   .About-us .heading p{
+    font-size: 16px;
+    display: flex;
+    width: 100%;
+   }
+}
+
+/* Be clear and Concise section  */
+@media (max-width:768px) {
+    .clear-concise{
+        padding: 20px;
+    }
+    .clear-concise h2{
+        font-size: 26px;
+    }
+    .clear-concise .paragraph{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        font-size: 14px;
+        transform: translateY(-10%);
+        line-break: anywhere;
+    }
+}
+
+/* Climate change section */
+@media (max-width:768px) {
+    .climate-change{
+        padding: 20px;
+        text-align: center;
+    }
+    .climate-change h2{
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+/* Make it inviting and engaging section  */
+@media (max-width:768px){
+    .inviting-engaging{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inviting-engaging h2{
+       font-size: 20px; 
+    }
+    .inviting-engaging  .paragraph-2{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        font-size: 14px;
+        line-break: anywhere;
+    }
+    .inviting-engaging .img img{
+        height: 40vh;
+        width: 100%;
+        margin-top: 40%;
+        object-fit: cover;
+        border-radius: 0;
+    }
+}
+
+/* Short-sweet */
+
+@media (max-width:768px) {
+    .short-sweet .flex {
+        flex-direction: column-reverse;   
+        transform: translateY(-20%);      
+    }
+    .short-sweet .img{
+    width: 100%;
+     flex: none;
+    }
+    .short-sweet .img img{
+        height: 40vh;
+        border-radius: 0%;
+    }
+    .short-sweet h2{
+        font-size: 20px;
+    }
+    .short-sweet .paragraph-3{
+         display: flex;
+        flex-direction: column;
+        gap: 0;
+        font-size: 14px;
+        line-break: anywhere;
+    }
+}
+
+/* About services */
+@media(max-width:768px){
+ .services{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-13%);
+ }   
+ .services h2{
+    font-size: 30px;
+ }
+ .services p{
+    font-size: 14px;
+ }
+ .services .cards{
+    display:flex;
+    flex-direction: column;
+ }
+}
+
+
+

@@ -1,5 +1,5 @@
-.content h1::after,
-.content h1::before{
+.left-sec .content h1::after,
+.left-sec .content h1::before{
     position: absolute;
     content: "";
     display: flex;

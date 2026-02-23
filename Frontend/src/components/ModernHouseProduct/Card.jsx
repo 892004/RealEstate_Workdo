@@ -7,8 +7,8 @@ import QuickViewModal from "../QuickViewModal.jsx"; // ✅ THIS WAS MISSING
 const API =
   "http://localhost:4000/api/products/by-collection/properties";
 
-const CARD_WIDTH = 420;
-const GAP = 70;
+const CARD_WIDTH = 350;
+const GAP = 100;
 
 const Card = () => {
   const [products, setProducts] = useState([]);
@@ -184,7 +184,7 @@ const Card = () => {
   };
 
   return (
-    <section className="relative h-full overflow-x-hidden flex items-center justify-center -translate-y-20">
+    <section className=" relative h-full overflow-x-hidden flex items-center justify-center -translate-y-20">
       {/* TRACK */}
       <div
         className="flex"
@@ -202,10 +202,10 @@ const Card = () => {
             <div
               key={item.product.id}
               style={{ minWidth: CARD_WIDTH }}
-              className="bg-[#b48a6f] rounded-xl text-white border border-white h-[76vh]"
+              className="template bg-[#b48a6f] rounded-xl text-white border border-white h-auto min-h-[450px] mt-10 "
             >
               {/* IMAGE */}
-              <div className="relative rounded-xl overflow-hidden">
+              <div className="relative rounded-xl overflow-hidden gap-0">
                 <img
                   src={`http://localhost:4000${variant.image_url}`}
                   className="h-70 w-full object-cover"
@@ -307,7 +307,7 @@ const Card = () => {
       </div>
 
       {/* ARROWS */}
-      <div className="buttons flex items-center justify-center absolute left-50 right-50 bottom-0 gap-80">
+      <div className="buttons flex items-center justify-center absolute left-50 right-50 bottom-0 gap-80 translate-y-10 ">
         <button
           className="text-2xl border border-white px-3 py-0.5 text-white bg-[#172229] cursor-pointer rounded-full pb-1"
           onClick={prev}

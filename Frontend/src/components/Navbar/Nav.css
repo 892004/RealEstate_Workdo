@@ -108,3 +108,56 @@
 .menu-btn-blog:hover .mega-content-blog{
   visibility: visible;
 }
+
+
+
+/* responsive Navbar  */
+@media (max-width:768px) {
+  .Navbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+  }
+  .Navbar ul{
+    display: none;
+  }
+  .Navbar .logo img{
+      height: 20px;
+      padding-right: 70px;
+  }
+  .Navbar .language{
+    display: none;
+  }
+
+  .Navbar .currency{
+    display: none;
+  }
+  .Navbar .user .user-icons {
+      height: 35px;
+      width: 35px;
+  }
+  .Navbar .cart button p{
+    font-size: 8px;
+  }
+  .Navbar .cart button h4{
+    font-size: 0px;
+  } 
+  .Navbar .cart{
+    height: 35px;
+    width: 35px;
+  }
+  .Navbar .cart p{
+    position: absolute;
+    right: 0px;
+    padding:2px 4px 2px 4px;
+    font-size: 10px;
+  }
+  .Navbar .cart .cart-icons{
+    height: 20px;
+  }
+
+  .Navbar .Hamburg-menu{
+    visibility: visible;
+  }
+}

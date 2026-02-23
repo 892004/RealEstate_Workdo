@@ -146,8 +146,6 @@ const Faq = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };

@@ -1,4 +1,6 @@
 import React from 'react'
+import '../components/login/login.css'
+import {Link} from 'react-router-dom'
 
 const ForgotPass = () => {
   return (
@@ -12,7 +14,9 @@ const ForgotPass = () => {
           <hr className='mt-5'/>
           <div className="buttons flex flex-row">
                 <button className=' cursor-pointer m-5 bg-[#172229] py-2 px-5 text-[#FFE7D9] rounded-full'>Submit</button>
-                <button className=' cursor-pointer m-5 -mx-3 bg-[#172229] py-2 px-5 text-[#FFE7D9] rounded-full'>Cencel</button>
+                <Link to="/admin/login">
+                <button className=' cursor-pointer m-5 -mx-3 bg-[#172229] py-2 px-5 text-[#FFE7D9] rounded-full'>Cancel</button>
+                </Link>
             </div>
         </div>
     </div>

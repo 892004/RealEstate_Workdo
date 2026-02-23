@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from 'react-router-dom';
 import { FaLock } from 'react-icons/fa';
+import '../components/Checkout/cheackout.css'
+import Footer from '../components/Footer/Footer';
 
 const CheckOut = () => {
   const [formData, setFormData] = useState({
