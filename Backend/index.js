@@ -15,8 +15,14 @@ app.use(express.json());
 // static uploads
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
-// tiny health route (helps debug)
-app.get('/api/health', (req, res) => res.json({ ok: true }));
+
+app.get('/', (req, res) => {
+  res.send("Real Estate Backend Running 🚀");
+});
+
+app.get('/api/health', (req, res) => {
+  res.json({ ok: true });
+});
 
 // mount routers (order not critical here)
 app.use('/api/auth', authRoutes);
