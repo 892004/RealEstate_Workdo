@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import api from "../Apis/Api";
 
-const BASE_URL = "http://localhost:4000";
+const BASE_URL = "https://realestate-workdo.onrender.com";
 
 const EditProduct = () => {
   const { id } = useParams();

@@ -5,7 +5,9 @@ import { HiMiniArrowLongLeft } from "react-icons/hi2";
 import { HiMiniArrowLongRight } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
-import axios from "axios";
+import api from "../../Apis/Api.js";
+
+const BASE_URL = "https://realestate-workdo.onrender.com";
 
 const CARD_WIDTH = 300;
 const GAP = 24;
@@ -19,8 +21,8 @@ const ProductsSlider = ({ collection }) => {
 
   // 🔹 FETCH PRODUCTS
   useEffect(() => {
-    axios
-      .get(`http://localhost:4000/api/products/by-collection/${collection}`)
+    api
+      .get(`products/by-collection/${collection}`)
       .then(res => {
         setProducts(res.data);
 
@@ -85,7 +87,7 @@ const ProductsSlider = ({ collection }) => {
       productId: product.id,
       title: product.title,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       variantId: variant.id,
       sqft: variant.sqft,
     };
@@ -137,7 +139,7 @@ const ProductsSlider = ({ collection }) => {
             >
               <div className="relative h-[220px] ">
                 <img
-                  src={`http://localhost:4000${variant?.image_url}`}
+                  src={`${BASE_URL}${variant?.image_url}`}
                   alt={product.title}
                   className="h-full w-full object-cover"
                 />
@@ -194,7 +196,7 @@ const ProductsSlider = ({ collection }) => {
                         title: product.title,
                         sqft: variant.sqft,
                         price: variant.price,
-                        image: `http://localhost:4000${variant.image_url}`,
+                        image: `${BASE_URL}${variant.image_url}`,
                         qty: 1,
                       };
 

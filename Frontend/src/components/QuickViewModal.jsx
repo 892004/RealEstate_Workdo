@@ -1,6 +1,8 @@
 import React,{ useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
+const BASE_URL = "https://realestate-workdo.onrender.com";
+
 const QuickViewModal = ({
   isOpen,
   onClose,
@@ -44,7 +46,7 @@ const QuickViewModal = ({
           {/* Image */}
           <div className="flex-1">
             <img
-              src={`http://localhost:4000${variant?.image_url}`}
+              src={`${BASE_URL}${variant?.image_url}`}
               alt={product.title}
               className="w-full h-60 object-cover rounded-lg"
             />

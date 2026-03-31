@@ -1,17 +1,17 @@
-const BASE = 'http://localhost:4000';
+const BASE_URL = "https://realestate-workdo.onrender.com";
 
 export async function getJson(path){
-  const res = await fetch(BASE + path);
+  const res = await fetch(BASE_URL + path);
   return res.json();
 }
 
 export async function getJsonAuth(path, token){
-  const res = await fetch(BASE + path, { headers: { Authorization: `Bearer ${token}` }});
+  const res = await fetch(BASE_URL + path, { headers: { Authorization: `Bearer ${token}` }});
   return res.json();
 }
 
 export async function postJsonAuth(path, body, token){
-  const res = await fetch(BASE + path, {
+  const res = await fetch(BASE_URL + path, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization:`Bearer ${token}` },
     body: JSON.stringify(body)
@@ -20,7 +20,7 @@ export async function postJsonAuth(path, body, token){
 }
 
 export async function putJsonAuth(path, body, token){
-  const res = await fetch(BASE + path, {
+  const res = await fetch(BASE_URL + path, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', Authorization:`Bearer ${token}` },
     body: JSON.stringify(body)
@@ -29,12 +29,12 @@ export async function putJsonAuth(path, body, token){
 }
 
 export async function deleteAuth(path, token){
-  const res = await fetch(BASE + path, { method:'DELETE', headers:{ Authorization:`Bearer ${token}` }});
+  const res = await fetch(BASE_URL + path, { method:'DELETE', headers:{ Authorization:`Bearer ${token}` }});
   return res.json();
 }
 
 // For file upload
 export async function postFormAuth(path, formData, token){
-  const res = await fetch(BASE + path, { method:'POST', headers:{ Authorization:`Bearer ${token}` }, body: formData });
+  const res = await fetch(BASE_URL + path, { method:'POST', headers:{ Authorization:`Bearer ${token}` }, body: formData });
   return res.json();
 }

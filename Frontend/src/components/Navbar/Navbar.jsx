@@ -20,6 +20,8 @@ import { GoGift } from "react-icons/go";
 import { BsCartX } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 
+const BASE_URL = "https://realestate-workdo.onrender.com";
+
 const Navbar = ({ slug }) => {
   const navigate = useNavigate();
   // remove items from cart
@@ -137,7 +139,7 @@ const Navbar = ({ slug }) => {
 
   // fetch api data farmvilla
   async function getFarmVillaProduct() {
-    const url = "http://localhost:4000/api/products/by-collection/farm-villa";
+    const url = `${BASE_URL}/api/products/by-collection/farm-villa`;
     let response = await fetch(url);
     response = await response.json();
     setFarmVilla(response);
@@ -145,7 +147,7 @@ const Navbar = ({ slug }) => {
 
   // fetch api data property
   async function getPropertyProduct() {
-    const url = "http://localhost:4000/api/products/by-collection/properties";
+    const url = `${BASE_URL}/api/products/by-collection/properties`;
     let response = await fetch(url);
     response = await response.json();
     setProperties(response);
@@ -153,7 +155,7 @@ const Navbar = ({ slug }) => {
 
   // fetch api data royalhouse
   async function getRoyalHouseProduct() {
-    const url = " http://localhost:4000/api/products/by-collection/royal-house";
+    const url = `${BASE_URL}/api/products/by-collection/royal-house`;
     let response = await fetch(url);
     response = await response.json();
     setRoyalHouse(response);
@@ -887,7 +889,7 @@ const Navbar = ({ slug }) => {
                             className="min-w-[360px] border border-black rounded-xl p-4 flex items-center gap-4 bg-white"
                           >
                             <img
-                              src={`http://localhost:4000${item.variants?.[0]?.image_url}`}
+                              src={`${BASE_URL}${item.variants?.[0]?.image_url}`}
                               alt={item.title}
                               className="h-20 w-20 object-cover rounded-lg"
                             />

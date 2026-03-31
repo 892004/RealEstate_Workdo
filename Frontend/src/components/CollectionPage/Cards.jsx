@@ -8,6 +8,8 @@ import { AiOutlineEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import QuickViewModal from "../QuickViewModal.jsx";
 
+const BASE_URL = "https://realestate-workdo.onrender.com";
+
 const ProductCard = ({ item }) => {
   if (!item || !item.variants || item.variants.length === 0) return null;
 
@@ -37,7 +39,7 @@ const ProductCard = ({ item }) => {
       productId: item.product.id,
       title: item.product.title,
       price: selectedVariant.price,
-      image: `http://localhost:4000${selectedVariant.image_url}`,
+      image: `${BASE_URL}${selectedVariant.image_url}`,
       variantId: selectedVariant.id,
       sqft: selectedVariant.sqft,
     };
@@ -71,7 +73,7 @@ const ProductCard = ({ item }) => {
       productId: item.product.id,
       title: item.product.title,
       price: selectedVariant.price,
-      image: `http://localhost:4000${selectedVariant.image_url}`,
+      image: `${BASE_URL}${selectedVariant.image_url}`,
       variantId: selectedVariant.id,
       sqft: selectedVariant.sqft,
     };
@@ -109,7 +111,7 @@ const ProductCard = ({ item }) => {
       title: product.title,
       sqft: variant.sqft,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       qty: 1,
     };
 
@@ -137,7 +139,7 @@ const ProductCard = ({ item }) => {
       productId: product.id,
       title: product.title,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       variantId: variant.id,
       sqft: variant.sqft,
     };
@@ -162,7 +164,7 @@ const ProductCard = ({ item }) => {
       productId: product.id,
       title: product.title,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       variantId: variant.id,
       sqft: variant.sqft,
     };
@@ -195,7 +197,7 @@ const ProductCard = ({ item }) => {
   return (
     <div className="cards border w-80 h-110 rounded-xl relative overflow-hidden shadow-sm mt-6 cursor-pointer" >
       <img
-        src={`http://localhost:4000${selectedVariant.image_url}`}
+        src={`${BASE_URL}${selectedVariant.image_url}`}
         alt={item.product.title}
         className="w-full h-[220px] object-cover"
         onClick={() => navigate(`/product-info/${item.product.id}`)}
@@ -267,7 +269,7 @@ const ProductCard = ({ item }) => {
       title: item.product.title,
       sqft: selectedVariant.sqft,
       price: selectedVariant.price,
-      image: `http://localhost:4000${selectedVariant.image_url}`,
+      image: `${BASE_URL}${selectedVariant.image_url}`,
       qty: 1,
     };
 

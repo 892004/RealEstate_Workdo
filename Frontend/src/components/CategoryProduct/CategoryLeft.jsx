@@ -55,7 +55,7 @@ const CategoryLeft = () => {
               <img
                 src={elem.img}
                 className="w-80 h-70 object-cover rounded-xl"
-              />
+                 />
 
               <h3 className="text-white absolute text-2xl mt-3 font-semibold flex items-center">
                 {elem.title}  <span className=" px-25 font-bold text-2xl cursor-pointer"><span></span><HiArrowLongRight />

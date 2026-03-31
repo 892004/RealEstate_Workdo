@@ -5,6 +5,8 @@ import { LiaLongArrowAltLeftSolid } from "react-icons/lia";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 
+const BASE_URL = "https://realestate-workdo.onrender.com";
+
 
 const CARD_WIDTH = 700;
 const GAP = 30;
@@ -99,7 +101,7 @@ const Cards = () => {
               {/* LEFT IMAGE */}
               <div className="relative w-1/2">
                 <img
-                  src={`http://localhost:4000${variant.image_url}`}
+                  src={`${BASE_URL}${variant.image_url}`}
                   className="h-full w-full object-cover"
                   alt={product.title}
                 />
@@ -168,7 +170,7 @@ const Cards = () => {
                       title: product.title,
                       sqft: variant.sqft,
                       price: variant.price,
-                      image: `http://localhost:4000${variant.image_url}`,
+                      image: `${BASE_URL}${variant.image_url}`,
                       qty: 1,
                     };
 

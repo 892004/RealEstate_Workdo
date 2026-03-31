@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
+import api from '../Apis/Api'
 import { HiArrowLongRight } from "react-icons/hi2";
 import { HiArrowLongLeft } from "react-icons/hi2";
 import { CiHeart } from "react-icons/ci";
@@ -25,8 +25,8 @@ const ProductInfo = () => {
   useEffect(() => {
     setLoading(true);
 
-    axios
-      .get(`http://localhost:4000/api/products/${id}`)
+    api
+      .get(`/products/${id}`)
       .then((res) => {
         setProduct(res.data.product);
         setVariants(res.data.variants || []);
@@ -58,6 +58,9 @@ const decreaseQty = () => {
     setQty((prev) => prev - 1);
   }
 };
+
+
+const BASE_URL = "https://realestate-workdo.onrender.com";
 
   return (
     <section className="min-h-screen bg-[#172229] text-[#FFE7D9] py-10">
@@ -187,7 +190,7 @@ const decreaseQty = () => {
 
           <div>
             <img
-              src={`http://localhost:4000${selectedVariant.image_url}`}
+               src={`${BASE_URL}${selectedVariant.image_url}`}
               alt={product.title}
               className="rounded-2xl -translate-y-5 w-full h-[420px] object-cover"
             />

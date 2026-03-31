@@ -4,6 +4,8 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { TbCurrentLocation } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
+const BASE_URL = "https://realestate-workdo.onrender.com";
+
 const CARD_WIDTH = 340;
 const GAP = 24;
 const VISIBLE = 2;
@@ -100,7 +102,7 @@ const Cards = () => {
               `}
             >
               <img
-                src={`http://localhost:4000${variant.image_url}`}
+                src={`${BASE_URL}${variant.image_url}`}
                 className="h-[250px] w-full object-cover rounded-xl"
                 alt=""
               />
@@ -152,7 +154,7 @@ const Cards = () => {
                       title: product.title,
                       sqft: variant.sqft,
                       price: variant.price,
-                      image: `http://localhost:4000${variant.image_url}`,
+                      image: `${BASE_URL}${variant.image_url}`,
                       qty: 1,
                     };
 

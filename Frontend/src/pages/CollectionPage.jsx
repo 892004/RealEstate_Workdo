@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from '../Apis/Api'
 import Topcontect from "../components/CollectionPage/Topcontect";
 import MainContent from "../components/CollectionPage/MainContent";
 
@@ -55,8 +55,8 @@ const CollectionPage = () => {
   useEffect(() => {
     setLoading(true);
 
-    axios
-      .get(`http://localhost:4000/api/products/by-collection/${collection}`)
+    api
+      .get(`/products/by-collection/${collection}`)
       .then(res => {
         setProducts(res.data);
         setLoading(false);

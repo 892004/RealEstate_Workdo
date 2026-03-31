@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { TbCurrentLocation } from "react-icons/tb";
-import axios from "axios";
+import api from "../Apis/Api.js";
+
+const BASE_URL = "https://realestate-workdo.onrender.com";
 
 const CategoryProductSection = () => {
   const navigate = useNavigate();
@@ -12,12 +14,12 @@ const CategoryProductSection = () => {
 
   useEffect(() => {
     // Fetch Farm Vila products
-    axios.get('http://localhost:4000/api/products/by-collection/farm-villa')
+    api.get('products/by-collection/farm-villa')
       .then(res => {
         if (res.data && res.data.length > 0) {
           setFarmVilaProduct(res.data[0]);
         }
-        return axios.get('http://localhost:4000/api/products/by-collection/best-seller');
+        return api.get('products/by-collection/best-seller');
       })
       .then(res => {
         if (res.data && res.data.length > 0) {
@@ -40,7 +42,7 @@ const CategoryProductSection = () => {
       title: item.product.title,
       sqft: variant.sqft,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       qty: 1,
     };
 
@@ -79,7 +81,7 @@ const CategoryProductSection = () => {
         {/* Product Image */}
         <div className="mb-4">
           <img
-            src={`http://localhost:4000${selectedVariant.image_url}`}
+            src={`${BASE_URL}${selectedVariant.image_url}`}
             alt={item.product.title}
             className="w-full h-48 object-cover rounded-lg"
           />

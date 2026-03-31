@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../Apis/Api.js";
 import { TbCurrentLocation } from "react-icons/tb";
 import { HiMiniArrowLongRight, HiMiniArrowLongLeft } from "react-icons/hi2";
 import { Link } from "react-router-dom";
-import QuickViewModal from "../QuickViewModal.jsx"; // ✅ THIS WAS MISSING
-const API =
-  "http://localhost:4000/api/products/by-collection/properties";
+import QuickViewModal from "../QuickViewModal.jsx";
+
+const BASE_URL = "https://realestate-workdo.onrender.com";
 
 const CARD_WIDTH = 350;
 const GAP = 100;
@@ -26,7 +26,7 @@ const Card = () => {
       productId: item.product.id,
       title: item.product.title,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       variantId: variant.id,
       sqft: variant.sqft,
     };
@@ -65,7 +65,7 @@ const Card = () => {
       title: product.title,
       sqft: variant.sqft,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       qty: 1,
     };
 
@@ -90,7 +90,7 @@ const Card = () => {
       productId: product.id,
       title: product.title,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       variantId: variant.id,
       sqft: variant.sqft,
     };
@@ -115,7 +115,7 @@ const Card = () => {
       productId: product.id,
       title: product.title,
       price: variant.price,
-      image: `http://localhost:4000${variant.image_url}`,
+      image: `${BASE_URL}${variant.image_url}`,
       variantId: variant.id,
       sqft: variant.sqft,
     };
@@ -148,7 +148,7 @@ const Card = () => {
 
   /* 🔹 FETCH DATA */
   useEffect(() => {
-    axios.get(API).then((res) => {
+    api.get("products/by-collection/properties").then((res) => {
       setProducts(res.data);
 
       const defaults = {};
@@ -207,7 +207,7 @@ const Card = () => {
               {/* IMAGE */}
               <div className="relative rounded-xl overflow-hidden gap-0">
                 <img
-                  src={`http://localhost:4000${variant.image_url}`}
+                  src={`${BASE_URL}${variant.image_url}`}
                   className="h-70 w-full object-cover"
                   alt={item.product.title}
                 />
@@ -278,7 +278,7 @@ const Card = () => {
                         title: item.product.title,
                         sqft: variant.sqft,
                         price: variant.price,
-                        image: `http://localhost:4000${variant.image_url}`,
+                        image: `${BASE_URL}${variant.image_url}`,
                         qty: 1,
                       };
 
