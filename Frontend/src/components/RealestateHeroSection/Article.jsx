@@ -1,11 +1,11 @@
 import React, {useState }from 'react'
-import '../Artical/artical.css'
 import { TbShare2 } from "react-icons/tb";
 import blog1 from '../../public/Images/Blog1.webp'
 import blog2 from '../../public/Images/Blog2.webp'
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { HiMiniArrowLongRight } from "react-icons/hi2";
 import { FaUserLarge } from "react-icons/fa6";
+import '../Article/article.css'
 
 
 
