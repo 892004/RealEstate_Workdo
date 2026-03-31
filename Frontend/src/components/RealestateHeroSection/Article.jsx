@@ -5,7 +5,7 @@ import blog2 from '../../public/Images/Blog2.webp'
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { HiMiniArrowLongRight } from "react-icons/hi2";
 import { FaUserLarge } from "react-icons/fa6";
-import '../Artical/artical.css'
+import '../Artical/Artical.css'
 
 
 
