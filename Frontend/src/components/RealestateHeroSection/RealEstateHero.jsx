@@ -4,7 +4,7 @@ import ImgContent from "./Img";
 import Article from "./Article";
 import blogData from "../../data/data";
 import Navbar from "../Navbar/Navbar";
-import '../Artical/artical.css'
+import '../Article/article.css'
 
 const RealEstateHero = () => {
  const { slug } = useParams();
