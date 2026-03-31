@@ -15,7 +15,6 @@ app.use(express.json());
 // static uploads
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
-
 app.get('/', (req, res) => {
   res.send("Real Estate Backend Running 🚀");
 });
@@ -23,7 +22,6 @@ app.get('/', (req, res) => {
 app.get('/api/health', (req, res) => {
   res.json({ ok: true });
 });
-
 // mount routers (order not critical here)
 app.use('/api/auth', authRoutes);
 app.use('/api/collections', collectionRoutes);
